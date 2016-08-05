@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <!-- KingJA -->
+    <color name="bg_blue">#4285f4</color>
+    <color name="bg_white">#FFFFFF</color>
+    <color name="bg_black">#000000</color>
+    <color name="trnas_kj">#00000000</color>
+    <color name="trans_half_kj">#22ffffff</color>
+
+    <color name="gray_divider">#CFCFCF</color>
+
+
+
+    <color name="font_3">#333333</color>
+    <color name="font_9">#999999</color>
+    <color name="font_6">#666666</color>
+    <color name="font_c">#cccccc</color>
+    <color name="font_0">#000000</color>
+    <color name="font_f">#ffffff</color>
+</resources>

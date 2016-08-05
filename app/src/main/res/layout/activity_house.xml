@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+   <LinearLayout
+       android:background="@color/bg_blue"
+       android:padding="16dp"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <ImageView
+           android:background="@drawable/bg_house_icon"
+           android:layout_width="60dp"
+           android:layout_height="60dp" />
+
+       <LinearLayout
+           android:layout_marginLeft="12dp"
+           android:orientation="vertical"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <TextView
+               android:id="@+id/tv_houseName"
+               style="@style/font_f_15"
+               android:text="大自然"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" />
+           <TextView
+               android:id="@+id/tv_address"
+               style="@style/font_f_12"
+               android:text="自由的民主道路是非常难走的"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content" />
+           <ImageView
+               android:layout_marginTop="2dp"
+               android:background="@drawable/sel_sign"
+               android:layout_width="86dp"
+               android:layout_height="22dp" />
+       </LinearLayout>
+
+
+   </LinearLayout>
+
+    <RelativeLayout
+        android:padding="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+
+            style="@style/font_3_15"
+            android:text="房屋撤布防"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>
