@@ -123,6 +123,8 @@ public class ThreadPoolTask implements Runnable {
         generalParam.put("encryption", encryption);
         generalParam.put("dataTypeCode", dataTypeCode);
         generalParam.put("content", json);
+        generalParam.put("cardType", "");
+        generalParam.put("taskId", "");
         return generalParam;
 
     }

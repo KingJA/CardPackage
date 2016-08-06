@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.kingja.cardpackage.R;
+import com.kingja.cardpackage.entiy.ChuZuWu_List;
 import com.kingja.cardpackage.entiy.ChuZuWu_ListByRenter;
 import com.kingja.cardpackage.util.ToastUtil;
 
@@ -19,7 +20,7 @@ import com.kingja.cardpackage.util.ToastUtil;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class DetailHouseActivity extends BackTitleActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+public class DetailRentActivity extends BackTitleActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     private TextView mTvHouseName;
     private TextView mTvAddress;
@@ -28,20 +29,19 @@ public class DetailHouseActivity extends BackTitleActivity implements View.OnCli
     private TextView mTvRead;
     private TextView mTvMsg;
     private CheckBox mCbHouse;
-    private RelativeLayout mRlInfo;
     private TextView mTvCount;
     private RelativeLayout mRlMessage;
+    private RelativeLayout mRlApply;
+    private RelativeLayout mRlInfo;
+    private RelativeLayout mRlPeople;
+    private RelativeLayout mRlRoom;
     private RelativeLayout mRlFangdao;
     private RelativeLayout mRlDeviceInfo;
-
-
-
-
-    private ChuZuWu_ListByRenter.ContentBean entiy;
+    private ChuZuWu_List.ContentBean entiy;
 
     @Override
     protected void initVariables() {
-        entiy = (ChuZuWu_ListByRenter.ContentBean) getIntent().getSerializableExtra("ENTIY");
+        entiy = (ChuZuWu_List.ContentBean) getIntent().getSerializableExtra("ENTIY");
     }
 
     @Override
@@ -58,18 +58,20 @@ public class DetailHouseActivity extends BackTitleActivity implements View.OnCli
         mTvCount = (TextView) findViewById(R.id.tv_count);
         mRlFangdao = (RelativeLayout) findViewById(R.id.rl_fangdao);
         mRlDeviceInfo = (RelativeLayout) findViewById(R.id.rl_deviceInfo);
+        mRlPeople = (RelativeLayout) findViewById(R.id.rl_people);
+        mRlRoom = (RelativeLayout) findViewById(R.id.rl_room);
+        mRlApply = (RelativeLayout) findViewById(R.id.rl_apply);
     }
 
     @Override
     protected int getBackContentView() {
-        return R.layout.activity_house;
+        return R.layout.activity_rent;
     }
 
     @Override
     protected void initNet() {
 
     }
-
     @Override
     protected void initData() {
         mCbHouse.setOnCheckedChangeListener(this);
@@ -79,6 +81,9 @@ public class DetailHouseActivity extends BackTitleActivity implements View.OnCli
         mTvRead.setOnClickListener(this);
         mRlInfo.setOnClickListener(this);
         mIvClose.setOnClickListener(this);
+        mRlPeople.setOnClickListener(this);
+        mRlApply.setOnClickListener(this);
+        mRlRoom.setOnClickListener(this);
     }
 
     @Override
@@ -88,8 +93,8 @@ public class DetailHouseActivity extends BackTitleActivity implements View.OnCli
         mTvAddress.setText(entiy.getADDRESS());
     }
 
-    public static void goActivity(Context context, ChuZuWu_ListByRenter.ContentBean entiy) {
-        Intent intent = new Intent(context, DetailHouseActivity.class);
+    public static void goActivity(Context context, ChuZuWu_List.ContentBean entiy) {
+        Intent intent = new Intent(context, DetailRentActivity.class);
         intent.putExtra("ENTIY",entiy);
         context.startActivity(intent);
     }
@@ -121,6 +126,18 @@ public class DetailHouseActivity extends BackTitleActivity implements View.OnCli
             //点击关闭
             case R.id.iv_close:
                 ToastUtil.showToast("点击关闭");
+                break;
+            //人员管理
+            case R.id.rl_people:
+                ToastUtil.showToast("人员管理");
+                break;
+            //房间管理
+            case R.id.rl_room:
+                ToastUtil.showToast("房间管理");
+                break;
+            //人员申报
+            case R.id.rl_apply:
+                ToastUtil.showToast("人员申报");
                 break;
             default:
                 break;

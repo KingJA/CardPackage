@@ -4,17 +4,15 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.kingja.cardpackage.adapter.RentAdapter;
+import com.kingja.cardpackage.R;
+import com.kingja.cardpackage.adapter.ShopAdapter;
 import com.kingja.cardpackage.entiy.ChuZuWu_List;
 import com.kingja.cardpackage.entiy.ErrorResult;
+import com.kingja.cardpackage.entiy.ShangPu_List;
 import com.kingja.cardpackage.net.ThreadPoolTask;
 import com.kingja.cardpackage.net.WebServiceCallBack;
 import com.kingja.cardpackage.util.AppUtil;
-import com.kingja.cardpackage.base.BaseActivity;
-import com.kingja.cardpackage.R;
 import com.kingja.cardpackage.util.SharedPreferencesUtils;
 import com.kingja.cardpackage.util.ToastUtil;
 
@@ -29,11 +27,11 @@ import java.util.Map;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class RentActivity extends BackTitleActivity implements SwipeRefreshLayout.OnRefreshListener,AdapterView.OnItemClickListener{
+public class ShopActivity extends BackTitleActivity implements SwipeRefreshLayout.OnRefreshListener,AdapterView.OnItemClickListener,BackTitleActivity.OnMenuClickListener{
     private SwipeRefreshLayout mSrlTopContent;
     private ListView mLvTopContent;
-    private List<ChuZuWu_List.ContentBean> mChuZuWuList=new ArrayList<>();
-    private RentAdapter mRentAdapter;
+    private ShopAdapter mShopAdapter;
+    private List<ShangPu_List.ContentBean> mShopList =new ArrayList<>();
 
 
     @Override
@@ -47,8 +45,8 @@ public class RentActivity extends BackTitleActivity implements SwipeRefreshLayou
         mSrlTopContent = (SwipeRefreshLayout) findViewById(R.id.srl_top_content);
         mLvTopContent = (ListView) findViewById(R.id.lv_top_content);
 
-        mRentAdapter = new RentAdapter(this, mChuZuWuList);
-        mLvTopContent.setAdapter(mRentAdapter);
+        mShopAdapter = new ShopAdapter(this, mShopList);
+        mLvTopContent.setAdapter(mShopAdapter);
 
         mSrlTopContent.setColorSchemeResources(R.color.bg_black);
         mSrlTopContent.setProgressViewOffset(false, 0, AppUtil.dp2px(24));
@@ -68,14 +66,14 @@ public class RentActivity extends BackTitleActivity implements SwipeRefreshLayou
         param.put("PageSize", "100");
         param.put("PageIndex", "0");
         new ThreadPoolTask.Builder()
-                .setGeneralParam((String) SharedPreferencesUtils.get("TOKEN", ""), 0,"ChuZuWu_List", param)
-                .setBeanType(ChuZuWu_List.class)
-                .setCallBack(new WebServiceCallBack<ChuZuWu_List>() {
+                .setGeneralParam((String) SharedPreferencesUtils.get("TOKEN", ""), 0,"ShangPu_List", param)
+                .setBeanType(ShangPu_List.class)
+                .setCallBack(new WebServiceCallBack<ShangPu_List>() {
                     @Override
-                    public void onSuccess(ChuZuWu_List bean) {
+                    public void onSuccess(ShangPu_List bean) {
                         mSrlTopContent.setRefreshing(false);
-                        mChuZuWuList = bean.getContent();
-                        mRentAdapter.setData(mChuZuWuList);
+                        mShopList = bean.getContent();
+                        mShopAdapter.setData(mShopList);
                     }
 
                     @Override
@@ -89,11 +87,12 @@ public class RentActivity extends BackTitleActivity implements SwipeRefreshLayou
     protected void initData() {
         mLvTopContent.setOnItemClickListener(this);
         mSrlTopContent.setOnRefreshListener(this);
+        setOnMenuClickListener(this);
     }
 
     @Override
     protected void setData() {
-        setTitle("我的出租屋");
+        setTitle("我的店");
         setTopColor(TopColor.WHITE);
     }
 
@@ -106,7 +105,12 @@ public class RentActivity extends BackTitleActivity implements SwipeRefreshLayou
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        ChuZuWu_List.ContentBean bean= (ChuZuWu_List.ContentBean) parent.getItemAtPosition(position);
-        DetailRentActivity.goActivity(this,bean);
+        ShangPu_List.ContentBean bean= (ShangPu_List.ContentBean) parent.getItemAtPosition(position);
+        DetailShopActivity.goActivity(this,bean);
+    }
+
+    @Override
+    public void onMenuClick() {
+        ToastUtil.showToast("菜单");
     }
 }

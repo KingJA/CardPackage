@@ -99,11 +99,19 @@
         android:padding="12dp">
 
         <TextView
+            android:id="@+id/tv_cebufang"
             style="@style/font_3_15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="房屋撤布防" />
 
+        <TextView
+            style="@style/font_9_15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/tv_cebufang"
+            android:text="(无住户情况有效)" />
 
         <CheckBox
             android:id="@+id/cb_house"
@@ -156,11 +164,106 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_marginTop="12dp"
+        android:id="@+id/rl_people"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_white"
+        android:padding="12dp">
 
+        <ImageView
+            android:id="@+id/iv_people"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/house_people" />
+
+        <TextView
+            style="@style/font_3_15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/iv_people"
+            android:text="人员管理" />
+
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/arrow_right" />
+    </RelativeLayout>
+    <View style="@style/divider_nomal_horizontal" />
+    <RelativeLayout
+        android:id="@+id/rl_room"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_white"
+        android:padding="12dp">
+
+        <ImageView
+            android:id="@+id/iv_room"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/house_room" />
+
+        <TextView
+            style="@style/font_3_15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/iv_room"
+            android:text="房间管理" />
+
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/arrow_right" />
+    </RelativeLayout>
+    <View style="@style/divider_nomal_horizontal" />
+    <RelativeLayout
+        android:id="@+id/rl_apply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_white"
+        android:padding="12dp">
+
+        <ImageView
+            android:id="@+id/iv_apply"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/house_apply" />
+
+        <TextView
+            style="@style/font_3_15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/iv_apply"
+            android:text="人员申报" />
+
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/arrow_right" />
+    </RelativeLayout>
+    <View style="@style/divider_nomal_horizontal" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
         android:background="@color/bg_white"
         android:padding="12dp">
 

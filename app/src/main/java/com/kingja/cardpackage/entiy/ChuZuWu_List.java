@@ -1,5 +1,6 @@
 package com.kingja.cardpackage.entiy;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -79,7 +80,7 @@ public class ChuZuWu_List {
         this.Content = Content;
     }
 
-    public static class ContentBean {
+    public static class ContentBean implements Serializable{
         private String HOUSEID;
         private String HOUSENAME;
         private String DianZiMenPai;
@@ -197,7 +198,7 @@ public class ChuZuWu_List {
             this.RoomList = RoomList;
         }
 
-        public static class RoomListBean {
+        public static class RoomListBean implements Serializable{
             private String ROOMID;
             private int ROOMNO;
             private int DEPLOYSTATUS;

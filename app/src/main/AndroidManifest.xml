@@ -26,7 +26,10 @@
         <activity android:name=".activity.MainActivity"/>
         <activity android:name=".activity.RentActivity"/>
         <activity android:name=".activity.HouseActivity"/>
+        <activity android:name=".activity.ShopActivity"/>
         <activity android:name=".activity.DetailHouseActivity"/>
+        <activity android:name=".activity.DetailRentActivity"/>
+        <activity android:name=".activity.DetailShopActivity"/>
     </application>
 
 

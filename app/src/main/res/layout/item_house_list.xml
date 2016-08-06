@@ -14,7 +14,7 @@
         android:id="@+id/tv_houseName"
         android:layout_toRightOf="@id/iv_icon"
         style="@style/font_3_15"
-        android:text="4444444444444444444"
+        android:text=""
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <TextView
@@ -24,7 +24,7 @@
         android:layout_below="@+id/tv_houseName"
         android:layout_toRightOf="@id/iv_icon"
         style="@style/font_9_15"
-        android:text="4444444444444444444"
+        android:text=""
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
