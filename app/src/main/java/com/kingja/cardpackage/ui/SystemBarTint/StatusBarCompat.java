@@ -20,13 +20,13 @@ import com.kingja.cardpackage.R;
  * 修改备注：
  */
 public class StatusBarCompat {
-    public static void initStatusBar(Activity activity) {
+    public static void initStatusBar(Activity activity,int res) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setTranslucentStatus(activity, true);
         }
         SystemBarTintManager tintManager = new SystemBarTintManager(activity);
         tintManager.setStatusBarTintEnabled(true);
-        tintManager.setStatusBarTintResource(R.color.bg_blue);
+        tintManager.setStatusBarTintResource(res);
 
     }
 

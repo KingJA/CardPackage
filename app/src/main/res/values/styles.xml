@@ -64,7 +64,7 @@
 
     <style name="font_n_15">
         <item name="android:textSize">15sp</item>
-        <item name="android:textColor">@color/font_n</item>
+        <item name="android:textColor">@color/font_c</item>
         <item name="android:singleLine">true</item>
     </style>
 

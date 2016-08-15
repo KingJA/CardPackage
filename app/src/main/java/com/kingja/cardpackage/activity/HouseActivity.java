@@ -4,8 +4,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.kingja.cardpackage.R;
 import com.kingja.cardpackage.adapter.HouseAdapter;
@@ -14,7 +12,8 @@ import com.kingja.cardpackage.entiy.ErrorResult;
 import com.kingja.cardpackage.net.ThreadPoolTask;
 import com.kingja.cardpackage.net.WebServiceCallBack;
 import com.kingja.cardpackage.util.AppUtil;
-import com.kingja.cardpackage.util.SharedPreferencesUtils;
+import com.kingja.cardpackage.util.Constants;
+import com.kingja.cardpackage.util.DataManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,7 +52,7 @@ public class HouseActivity extends BackTitleActivity implements SwipeRefreshLayo
 
     @Override
     protected int getBackContentView() {
-        return R.layout.sigle_lv;
+        return R.layout.single_lv;
     }
 
     @Override
@@ -64,7 +63,7 @@ public class HouseActivity extends BackTitleActivity implements SwipeRefreshLayo
         param.put("PageSize", "100");
         param.put("PageIndex", "0");
         new ThreadPoolTask.Builder()
-                .setGeneralParam((String) SharedPreferencesUtils.get("TOKEN", ""), 0,"ChuZuWu_ListByRenter", param)
+                .setGeneralParam(DataManager.getToken(), Constants.CARD_TYPE_HOUSE,Constants.ChuZuWu_ListByRenter, param)
                 .setBeanType(ChuZuWu_ListByRenter.class)
                 .setCallBack(new WebServiceCallBack<ChuZuWu_ListByRenter>() {
                     @Override

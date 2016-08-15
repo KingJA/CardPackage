@@ -4,8 +4,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.kingja.cardpackage.adapter.RentAdapter;
 import com.kingja.cardpackage.entiy.ChuZuWu_List;
@@ -13,10 +11,9 @@ import com.kingja.cardpackage.entiy.ErrorResult;
 import com.kingja.cardpackage.net.ThreadPoolTask;
 import com.kingja.cardpackage.net.WebServiceCallBack;
 import com.kingja.cardpackage.util.AppUtil;
-import com.kingja.cardpackage.base.BaseActivity;
 import com.kingja.cardpackage.R;
-import com.kingja.cardpackage.util.SharedPreferencesUtils;
-import com.kingja.cardpackage.util.ToastUtil;
+import com.kingja.cardpackage.util.Constants;
+import com.kingja.cardpackage.util.DataManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,7 +54,7 @@ public class RentActivity extends BackTitleActivity implements SwipeRefreshLayou
 
     @Override
     protected int getBackContentView() {
-        return R.layout.sigle_lv;
+        return R.layout.single_lv;
     }
 
     @Override
@@ -68,7 +65,7 @@ public class RentActivity extends BackTitleActivity implements SwipeRefreshLayou
         param.put("PageSize", "100");
         param.put("PageIndex", "0");
         new ThreadPoolTask.Builder()
-                .setGeneralParam((String) SharedPreferencesUtils.get("TOKEN", ""), 0,"ChuZuWu_List", param)
+                .setGeneralParam(DataManager.getToken(), Constants.CARD_TYPE_RENT,Constants.ChuZuWu_List, param)
                 .setBeanType(ChuZuWu_List.class)
                 .setCallBack(new WebServiceCallBack<ChuZuWu_List>() {
                     @Override

@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.kingja.cardpackage.R;
 import com.kingja.cardpackage.entiy.ChuZuWu_List;
-import com.kingja.cardpackage.entiy.ChuZuWu_ListByRenter;
 import com.kingja.cardpackage.util.ToastUtil;
 
 /**
@@ -29,6 +28,7 @@ public class DetailRentActivity extends BackTitleActivity implements View.OnClic
     private TextView mTvRead;
     private TextView mTvMsg;
     private CheckBox mCbHouse;
+    private CheckBox mCbWarmTip;
     private TextView mTvCount;
     private RelativeLayout mRlMessage;
     private RelativeLayout mRlApply;
@@ -54,6 +54,7 @@ public class DetailRentActivity extends BackTitleActivity implements View.OnClic
         mTvRead = (TextView) findViewById(R.id.tv_read);
         mTvMsg = (TextView) findViewById(R.id.tv_msg);
         mCbHouse = (CheckBox) findViewById(R.id.cb_house);
+        mCbWarmTip = (CheckBox) findViewById(R.id.cb_warm_tip);
         mRlInfo = (RelativeLayout) findViewById(R.id.rl_info);
         mTvCount = (TextView) findViewById(R.id.tv_count);
         mRlFangdao = (RelativeLayout) findViewById(R.id.rl_fangdao);
@@ -72,9 +73,11 @@ public class DetailRentActivity extends BackTitleActivity implements View.OnClic
     protected void initNet() {
 
     }
+
     @Override
     protected void initData() {
         mCbHouse.setOnCheckedChangeListener(this);
+        mCbWarmTip.setOnCheckedChangeListener(this);
         mRlDeviceInfo.setOnClickListener(this);
         mRlFangdao.setOnClickListener(this);
         mIvSign.setOnClickListener(this);
@@ -95,7 +98,7 @@ public class DetailRentActivity extends BackTitleActivity implements View.OnClic
 
     public static void goActivity(Context context, ChuZuWu_List.ContentBean entiy) {
         Intent intent = new Intent(context, DetailRentActivity.class);
-        intent.putExtra("ENTIY",entiy);
+        intent.putExtra("ENTIY", entiy);
         context.startActivity(intent);
     }
 
@@ -130,6 +133,7 @@ public class DetailRentActivity extends BackTitleActivity implements View.OnClic
             //人员管理
             case R.id.rl_people:
                 ToastUtil.showToast("人员管理");
+                RoomListActivity.goActivity(this,entiy);
                 break;
             //房间管理
             case R.id.rl_room:
@@ -147,6 +151,16 @@ public class DetailRentActivity extends BackTitleActivity implements View.OnClic
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        ToastUtil.showToast(isChecked+"");
+        switch (buttonView.getId()) {
+            case R.id.cb_house:
+                ToastUtil.showToast(isChecked + "房屋撤布防");
+                break;
+            case R.id.cb_warm_tip:
+                ToastUtil.showToast(isChecked + "预警信息提示");
+                break;
+            default:
+                break;
+
+        }
     }
 }

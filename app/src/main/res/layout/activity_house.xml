@@ -118,6 +118,31 @@
     <View style="@style/divider_nomal_horizontal" />
 
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_white"
+        android:padding="12dp">
+
+        <TextView
+            style="@style/font_3_15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="预警信息提示" />
+
+
+        <CheckBox
+            android:id="@+id/cb_warm_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/sel_cb_switch"
+            android:button="@null" />
+
+    </RelativeLayout>
+
+    <View style="@style/divider_nomal_horizontal" />
+
+    <RelativeLayout
         android:id="@+id/rl_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -208,7 +233,7 @@
             android:background="@drawable/house_fangdao" />
 
         <TextView
-            style="@style/font_3_15"
+            style="@style/font_n_15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"

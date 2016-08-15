@@ -11,14 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="用户名"
-        android:text="13736350090" />
+        android:text="13456058817" />
 
     <EditText
         android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="密码"
-        android:text="283237" />
+        android:text="123456" />
 
     <CheckBox
         android:id="@+id/cb_remember"

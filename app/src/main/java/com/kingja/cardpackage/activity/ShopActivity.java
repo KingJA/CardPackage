@@ -7,13 +7,13 @@ import android.widget.ListView;
 
 import com.kingja.cardpackage.R;
 import com.kingja.cardpackage.adapter.ShopAdapter;
-import com.kingja.cardpackage.entiy.ChuZuWu_List;
 import com.kingja.cardpackage.entiy.ErrorResult;
 import com.kingja.cardpackage.entiy.ShangPu_List;
 import com.kingja.cardpackage.net.ThreadPoolTask;
 import com.kingja.cardpackage.net.WebServiceCallBack;
 import com.kingja.cardpackage.util.AppUtil;
-import com.kingja.cardpackage.util.SharedPreferencesUtils;
+import com.kingja.cardpackage.util.Constants;
+import com.kingja.cardpackage.util.DataManager;
 import com.kingja.cardpackage.util.ToastUtil;
 
 import java.util.ArrayList;
@@ -55,7 +55,7 @@ public class ShopActivity extends BackTitleActivity implements SwipeRefreshLayou
 
     @Override
     protected int getBackContentView() {
-        return R.layout.sigle_lv;
+        return R.layout.single_lv;
     }
 
     @Override
@@ -66,7 +66,7 @@ public class ShopActivity extends BackTitleActivity implements SwipeRefreshLayou
         param.put("PageSize", "100");
         param.put("PageIndex", "0");
         new ThreadPoolTask.Builder()
-                .setGeneralParam((String) SharedPreferencesUtils.get("TOKEN", ""), 0,"ShangPu_List", param)
+                .setGeneralParam(DataManager.getToken(), Constants.CARD_TYPE_SHOP,Constants.ShangPu_List, param)
                 .setBeanType(ShangPu_List.class)
                 .setCallBack(new WebServiceCallBack<ShangPu_List>() {
                     @Override

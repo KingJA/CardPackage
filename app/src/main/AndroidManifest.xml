@@ -30,6 +30,8 @@
         <activity android:name=".activity.DetailHouseActivity"/>
         <activity android:name=".activity.DetailRentActivity"/>
         <activity android:name=".activity.DetailShopActivity"/>
+        <activity android:name=".activity.RoomListActivity"/>
+        <activity android:name=".activity.PersonManagerActivity"/>
     </application>
 
 

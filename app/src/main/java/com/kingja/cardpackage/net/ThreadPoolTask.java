@@ -30,24 +30,22 @@ public class ThreadPoolTask implements Runnable {
 
 
     private String token;
-    private int encryption;
     private String dataTypeCode;
+    private String cardType;
     private Object privateParam;
     private Class clazz;
 
     private WebServiceCallBack callBack;
-    private Activity activity;
     private int resultCode;
     private ErrorResult errorResult;
 
     public ThreadPoolTask(Builder builder) {
         this.token = builder.token;
-        this.encryption = builder.encryption;
         this.dataTypeCode = builder.dataTypeCode;
+        this.cardType = builder.cardType;
         this.privateParam = builder.privateParam;
         this.clazz = builder.clazz;
         this.callBack = builder.callBack;
-        this.activity = builder.activity;
     }
 
     public void execute() {
@@ -57,7 +55,7 @@ public class ThreadPoolTask implements Runnable {
 
     @Override
     public void run() {
-        Map<String, Object> generalParam = getGeneralParam(token, encryption, dataTypeCode, privateParam);
+        Map<String, Object> generalParam = getGeneralParam(token, cardType, dataTypeCode, privateParam);
         try {
             final String json = WebServiceManager.getInstance().load(generalParam);
             JSONObject rootObject = new JSONObject(json);
@@ -113,18 +111,27 @@ public class ThreadPoolTask implements Runnable {
         }
     }
 
-    public Map<String, Object> getGeneralParam(String token, int encryption, String dataTypeCode, Object privateParam) {
+/*
+    1001 我的住房#
+    1002 我家出租房#
+    1003 我的车
+    1004 我的店#
+    1005 亲情关爱
+    1006 服务商城
+    1007 出租房代管#*/
+
+    public Map<String, Object> getGeneralParam(String token, String cardType, String dataTypeCode, Object privateParam) {
         Gson gson = new Gson();
         String json = gson.toJson(privateParam);
         Log.i("PARAM_JSON", json);
 //        Logger.json(json);
         Map<String, Object> generalParam = new HashMap<>();
         generalParam.put("token", token);
-        generalParam.put("encryption", encryption);
+        generalParam.put("encryption", "0");
         generalParam.put("dataTypeCode", dataTypeCode);
         generalParam.put("content", json);
-        generalParam.put("cardType", "");
-        generalParam.put("taskId", "");
+        generalParam.put("cardType", cardType);
+        generalParam.put("taskId", "1");
         return generalParam;
 
     }
@@ -132,16 +139,15 @@ public class ThreadPoolTask implements Runnable {
 
     public static class Builder {
         private String token;
-        private int encryption;
+        private String cardType;
         private String dataTypeCode;
         private Object privateParam;
         private Class clazz;
         private WebServiceCallBack callBack;
-        private Activity activity;
 
-        public ThreadPoolTask.Builder setGeneralParam(String token, int encryption, String dataTypeCode, Object privateParam) {
+        public ThreadPoolTask.Builder setGeneralParam(String token, String cardType, String dataTypeCode, Object privateParam) {
             this.token = token;
-            this.encryption = encryption;
+            this.cardType = cardType;
             this.dataTypeCode = dataTypeCode;
             this.privateParam = privateParam;
             return this;
@@ -159,10 +165,6 @@ public class ThreadPoolTask implements Runnable {
 
         }
 
-        public ThreadPoolTask.Builder setActivity(Activity activity) {
-            this.activity = activity;
-            return this;
-        }
 
         public ThreadPoolTask build() {
             return new ThreadPoolTask(this);

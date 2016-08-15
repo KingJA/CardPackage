@@ -28,6 +28,7 @@ public class DetailHouseActivity extends BackTitleActivity implements View.OnCli
     private TextView mTvRead;
     private TextView mTvMsg;
     private CheckBox mCbHouse;
+    private CheckBox mCbWarmTip;
     private RelativeLayout mRlInfo;
     private TextView mTvCount;
     private RelativeLayout mRlMessage;
@@ -54,6 +55,7 @@ public class DetailHouseActivity extends BackTitleActivity implements View.OnCli
         mTvRead = (TextView) findViewById(R.id.tv_read);
         mTvMsg = (TextView) findViewById(R.id.tv_msg);
         mCbHouse = (CheckBox) findViewById(R.id.cb_house);
+        mCbWarmTip = (CheckBox) findViewById(R.id.cb_warm_tip);
         mRlInfo = (RelativeLayout) findViewById(R.id.rl_info);
         mTvCount = (TextView) findViewById(R.id.tv_count);
         mRlFangdao = (RelativeLayout) findViewById(R.id.rl_fangdao);
@@ -73,6 +75,7 @@ public class DetailHouseActivity extends BackTitleActivity implements View.OnCli
     @Override
     protected void initData() {
         mCbHouse.setOnCheckedChangeListener(this);
+        mCbWarmTip.setOnCheckedChangeListener(this);
         mRlDeviceInfo.setOnClickListener(this);
         mRlFangdao.setOnClickListener(this);
         mIvSign.setOnClickListener(this);
@@ -130,6 +133,16 @@ public class DetailHouseActivity extends BackTitleActivity implements View.OnCli
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        ToastUtil.showToast(isChecked+"");
+        switch (buttonView.getId()) {
+            case R.id.cb_house:
+                ToastUtil.showToast(isChecked+"房屋撤布防");
+                break;
+            case R.id.cb_warm_tip:
+                ToastUtil.showToast(isChecked+"预警信息提示");
+                break;
+            default:
+                break;
+
+        }
     }
 }

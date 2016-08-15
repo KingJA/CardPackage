@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.kingja.cardpackage.R;
-import com.kingja.cardpackage.entiy.ChuZuWu_List;
 import com.kingja.cardpackage.entiy.ShangPu_List;
 
 /**

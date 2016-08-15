@@ -17,7 +17,7 @@ import com.kingja.cardpackage.util.ActivityUtil;
 import com.kingja.cardpackage.util.AppInfoUtil;
 import com.kingja.cardpackage.util.CheckUtil;
 import com.kingja.cardpackage.util.PhoneUtil;
-import com.kingja.cardpackage.util.SharedPreferencesUtils;
+import com.kingja.cardpackage.util.SpUtils;
 
 /**
  * Description：TODO
@@ -85,14 +85,14 @@ public class LoginActivity extends BaseActivity {
         mInfo.setSOFTVERSION(AppInfoUtil.getVersionName());
         mInfo.setTaskID("1");
         new ThreadPoolTask.Builder()
-                .setGeneralParam("", 0,"User_Login", mInfo)
+                .setGeneralParam("", "","User_Login", mInfo)
                 .setBeanType(User_Login.class)
                 .setCallBack(new WebServiceCallBack<User_Login>() {
                     @Override
                     public void onSuccess(User_Login bean) {
                         setProgressDialog(false);
                         Log.e(TAG, "TOKEN: "+bean.getContent().getToken());
-                        SharedPreferencesUtils.put("TOKEN", bean.getContent().getToken());
+                        SpUtils.put("TOKEN", bean.getContent().getToken());
                         ActivityUtil.goActivityAndFinish(LoginActivity.this, MainActivity.class);
                     }
 

@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import com.kingja.cardpackage.base.App;
 
 
-public class SharedPreferencesUtils {
+public class SpUtils {
     private static SharedPreferences sharedPreferences = App.getSP();
 
     /**
