@@ -14,12 +14,12 @@ import java.util.List;
  * 创建时间：2016/3/24 9:13
  * 修改备注：
  */
-public abstract class BaseSimpleAdapter<T> extends BaseAdapter {
+public abstract class BaseLvAdapter<T> extends BaseAdapter {
     protected Context context;
     protected List<T> list;
     protected int selectPosition = -1;
 
-    public BaseSimpleAdapter(Context context, List<T> list) {
+    public BaseLvAdapter(Context context, List<T> list) {
 
         this.context = context;
         this.list = list;

@@ -16,7 +16,7 @@ import java.util.List;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class RoomListAdapter extends BaseSimpleAdapter<ChuZuWu_List.ContentBean.RoomListBean>{
+public class RoomListAdapter extends BaseLvAdapter<ChuZuWu_List.ContentBean.RoomListBean> {
     public RoomListAdapter(Context context, List<ChuZuWu_List.ContentBean.RoomListBean> list) {
         super(context, list);
     }

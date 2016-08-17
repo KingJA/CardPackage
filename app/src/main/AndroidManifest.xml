@@ -22,7 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".activity.MainActivity"/>
         <activity android:name=".activity.RentActivity"/>
         <activity android:name=".activity.HouseActivity"/>
@@ -32,6 +31,11 @@
         <activity android:name=".activity.DetailShopActivity"/>
         <activity android:name=".activity.RoomListActivity"/>
         <activity android:name=".activity.PersonManagerActivity"/>
+        <activity android:name=".activity.PersonManagerActivity2"/>
+        <activity android:name=".activity.RoomManagerActivity"/>
+        <activity android:name=".activity.EditTextActivity"/>
+        <activity android:name=".activity.EditRoomActivity"/>
+        <activity android:name=".activity.EditTextAreaActivity"/>
     </application>
 
 

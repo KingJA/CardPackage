@@ -15,7 +15,7 @@ public abstract class BaseActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
-		StatusBarCompat.initStatusBar(this,getStatusBarColor()==-1? R.color.bg_blue:getStatusBarColor());
+		StatusBarCompat.initStatusBar(this,getStatusBarColor()==-1? R.color.bg_black:getStatusBarColor());
 		ActivityManager.getAppManager().addActivity(this);
 		setContentView(getContentView());
 		initConmonView();

@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.kingja.cardpackage.R;
 import com.kingja.cardpackage.entiy.ChuZuWu_List;
-import com.kingja.cardpackage.entiy.ChuZuWu_ListByRenter;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ import java.util.List;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class RentAdapter extends BaseSimpleAdapter<ChuZuWu_List.ContentBean>{
+public class RentAdapter extends BaseLvAdapter<ChuZuWu_List.ContentBean> {
     public RentAdapter(Context context, List<ChuZuWu_List.ContentBean> list) {
         super(context, list);
     }

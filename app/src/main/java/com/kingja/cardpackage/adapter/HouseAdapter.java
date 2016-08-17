@@ -17,7 +17,7 @@ import java.util.List;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class HouseAdapter  extends BaseSimpleAdapter<ChuZuWu_ListByRenter.ContentBean>{
+public class HouseAdapter  extends BaseLvAdapter<ChuZuWu_ListByRenter.ContentBean> {
     public HouseAdapter(Context context, List<ChuZuWu_ListByRenter.ContentBean> list) {
         super(context, list);
     }

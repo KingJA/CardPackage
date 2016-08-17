@@ -33,7 +33,7 @@ public class CheckUtil {
      * @return
      */
     public static boolean checkZero(String s) {
-        if ("0".equals(s) || s.startsWith("0")) {
+        if ("0".equals(s) || s.startsWith("0")||s==null) {
             ToastUtil.showToast("请输入非零数字");
             return false;
         }

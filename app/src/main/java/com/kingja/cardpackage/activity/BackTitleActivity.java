@@ -16,7 +16,7 @@ import com.kingja.cardpackage.base.BaseActivity;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public abstract class BackTitleActivity extends BaseActivity implements View.OnClickListener{
+public abstract class BackTitleActivity extends BaseActivity implements View.OnClickListener {
 
     private RelativeLayout mRlTopRoot;
     private RelativeLayout mRlTopBack;
@@ -25,6 +25,10 @@ public abstract class BackTitleActivity extends BaseActivity implements View.OnC
     private TextView mTvTopTitle;
     private FrameLayout mFlContent;
     private OnMenuClickListener onMenuClickListener;
+    private OnRightClickListener onRightClickListener;
+    private RelativeLayout mRlTopRight;
+    private TextView mTvTopRight;
+    private View mVDivider;
 
 
     @Override
@@ -36,12 +40,16 @@ public abstract class BackTitleActivity extends BaseActivity implements View.OnC
         mRlTopBack = (RelativeLayout) findViewById(R.id.rl_top_back);
         mIvTopBack = (ImageView) findViewById(R.id.iv_top_back);
         mRlTopMenu = (RelativeLayout) findViewById(R.id.rl_top_menu);
+        mRlTopRight = (RelativeLayout) findViewById(R.id.rl_top_right);
         mTvTopTitle = (TextView) findViewById(R.id.tv_top_title);
+        mTvTopRight = (TextView) findViewById(R.id.tv_top_right);
         mFlContent = (FrameLayout) findViewById(R.id.fl_content);
+        mVDivider = (View) findViewById(R.id.v_divider);
 
         mRlTopBack.setOnClickListener(this);
         mRlTopMenu.setOnClickListener(this);
-        View content = View.inflate(this,getBackContentView(),null);
+        mRlTopRight.setOnClickListener(this);
+        View content = View.inflate(this, getBackContentView(), null);
         if (content != null) {
             FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                     FrameLayout.LayoutParams.MATCH_PARENT);
@@ -59,16 +67,20 @@ public abstract class BackTitleActivity extends BaseActivity implements View.OnC
 
     /**
      * 设置头部主题，默认蓝色
+     *
      * @param topColor 颜色枚举:TopColor.WHITE 白色 TopColor.BLUE 蓝色
      */
     public void setTopColor(TopColor topColor) {
-        mRlTopRoot.setBackgroundColor(ContextCompat.getColor(this, topColor==TopColor.WHITE?R.color.bg_white:R.color.bg_blue));
-        mIvTopBack.setBackgroundResource(topColor==TopColor.WHITE?R.drawable.sel_back_black:R.drawable.sel_back_white);
-        mTvTopTitle.setTextColor(ContextCompat.getColor(this, topColor==TopColor.WHITE?R.color.bg_black:R.color.bg_white));
+        mRlTopRoot.setBackgroundColor(ContextCompat.getColor(this, topColor == TopColor.WHITE ? R.color.bg_white : R.color.bg_blue));
+        mIvTopBack.setBackgroundResource(topColor == TopColor.WHITE ? R.drawable.sel_back_black : R.drawable.sel_back_white);
+        mTvTopTitle.setTextColor(ContextCompat.getColor(this, topColor == TopColor.WHITE ? R.color.bg_black : R.color.bg_white));
+        mTvTopRight.setTextColor(ContextCompat.getColor(this, topColor == TopColor.WHITE ? R.color.bg_black : R.color.bg_white));
+        mVDivider.setBackgroundColor(ContextCompat.getColor(this, topColor == TopColor.WHITE ? R.color.bg_divider : R.color.bg_blue));
     }
 
     /**
      * 设置标题
+     *
      * @param title 标题
      */
     public void setTitle(String title) {
@@ -86,17 +98,38 @@ public abstract class BackTitleActivity extends BaseActivity implements View.OnC
     }
 
     /**
+     * 设置右侧文字点击事件
+     * @param onRightClickListener 右侧文字点击监听器
+     */
+
+    public void setOnRightClickListener(OnRightClickListener onRightClickListener,String rightText) {
+        mRlTopRight.setVisibility(View.VISIBLE);
+        mTvTopRight.setText(rightText);
+        this.onRightClickListener = onRightClickListener;
+    }
+
+
+    /**
      * 菜单点击接口
      */
-    public interface OnMenuClickListener{
+    public interface OnMenuClickListener {
         void onMenuClick();
     }
 
     /**
+     * 右侧文字点击接口
+     */
+    public interface OnRightClickListener {
+        void onRightClick();
+    }
+
+    /**
      * 获取内容页布局
+     *
      * @return 布局文件ID
      */
     protected abstract int getBackContentView();
+
     /**
      * 初始化网络访问
      */
@@ -131,7 +164,11 @@ public abstract class BackTitleActivity extends BaseActivity implements View.OnC
                 if (onMenuClickListener != null) {
                     onMenuClickListener.onMenuClick();
                 }
-                finish();
+                break;
+            case R.id.rl_top_right:
+                if (onRightClickListener != null) {
+                    onRightClickListener.onRightClick();
+                }
                 break;
             default:
                 break;

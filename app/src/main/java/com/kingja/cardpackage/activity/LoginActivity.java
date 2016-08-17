@@ -7,10 +7,13 @@ import android.widget.EditText;
 
 import com.kingja.cardpackage.R;
 import com.kingja.cardpackage.base.BaseActivity;
+import com.kingja.cardpackage.db.DatebaseManager;
+import com.kingja.cardpackage.db.DownloadDbManager;
 import com.kingja.cardpackage.entiy.ErrorResult;
 import com.kingja.cardpackage.entiy.LoginInfo;
 import com.kingja.cardpackage.entiy.PhoneInfo;
 import com.kingja.cardpackage.entiy.User_Login;
+import com.kingja.cardpackage.net.PoolManager;
 import com.kingja.cardpackage.net.ThreadPoolTask;
 import com.kingja.cardpackage.net.WebServiceCallBack;
 import com.kingja.cardpackage.util.ActivityUtil;
@@ -52,6 +55,12 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        PoolManager.getInstance().execute(new Runnable() {
+            @Override
+            public void run() {
+                DatebaseManager.getInstance(getApplicationContext()).copyDataBase(DownloadDbManager.DB_NAME);
+            }
+        });
 
     }
 

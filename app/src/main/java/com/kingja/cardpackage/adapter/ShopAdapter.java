@@ -7,7 +7,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kingja.cardpackage.R;
-import com.kingja.cardpackage.entiy.ChuZuWu_List;
 import com.kingja.cardpackage.entiy.ShangPu_List;
 
 import java.util.List;
@@ -18,7 +17,7 @@ import java.util.List;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class ShopAdapter extends BaseSimpleAdapter<ShangPu_List.ContentBean>{
+public class ShopAdapter extends BaseLvAdapter<ShangPu_List.ContentBean> {
     public ShopAdapter(Context context, List<ShangPu_List.ContentBean> list) {
         super(context, list);
     }

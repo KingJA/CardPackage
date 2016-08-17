@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.kingja.cardpackage.R;
-import com.kingja.cardpackage.entiy.ChuZuWu_List;
 import com.kingja.cardpackage.entiy.ChuZuWu_MenPaiAuthorizationList;
 import com.kingja.cardpackage.ui.DrawHelperLayout;
 
@@ -18,8 +17,8 @@ import java.util.List;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class PersonManagerAdapter extends BaseSimpleAdapter<ChuZuWu_MenPaiAuthorizationList.ContentBean.PERSONNELINFOLISTBean>{
-    public PersonManagerAdapter(Context context, List<ChuZuWu_MenPaiAuthorizationList.ContentBean.PERSONNELINFOLISTBean> list) {
+public class PersonManagerLvAdapter extends BaseLvAdapter<ChuZuWu_MenPaiAuthorizationList.ContentBean.PERSONNELINFOLISTBean> {
+    public PersonManagerLvAdapter(Context context, List<ChuZuWu_MenPaiAuthorizationList.ContentBean.PERSONNELINFOLISTBean> list) {
         super(context, list);
     }
 
@@ -28,7 +27,7 @@ public class PersonManagerAdapter extends BaseSimpleAdapter<ChuZuWu_MenPaiAuthor
         ViewHolder viewHolder = null;
         if (convertView == null) {
             convertView = View
-                    .inflate(context, R.layout.item_person_info, null);
+                    .inflate(context, R.layout.item_person_manager, null);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {

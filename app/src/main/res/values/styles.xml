@@ -12,6 +12,8 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:listDivider">@drawable/shape_divider</item>
+
     </style>
 
     <style name="font_3_15">
@@ -28,6 +30,10 @@
 
     <style name="font_9_15">
         <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/font_9</item>
+        <item name="android:singleLine">true</item>
+    </style><style name="font_9_12">
+        <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/font_9</item>
         <item name="android:singleLine">true</item>
     </style>
@@ -72,6 +78,6 @@
     <style name="divider_nomal_horizontal">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1px</item>
-        <item name="android:background">@color/gray_divider</item>
+        <item name="android:background">@color/bg_divider</item>
     </style>
 </resources>

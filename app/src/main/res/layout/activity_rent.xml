@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -92,307 +93,317 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <ScrollView
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/bg_white"
-        android:padding="12dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_cebufang"
-            style="@style/font_3_15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="房屋撤布防" />
-
-        <TextView
-            style="@style/font_9_15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@id/tv_cebufang"
-            android:text="(无住户有效)" />
-
-        <CheckBox
-            android:id="@+id/cb_house"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/sel_cb_switch"
-            android:button="@null" />
-
-    </RelativeLayout>
-
-    <View style="@style/divider_nomal_horizontal" />
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/bg_white"
-        android:padding="12dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            style="@style/font_3_15"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="预警信息提示" />
+            android:background="@color/bg_white"
+            android:padding="12dp">
 
+            <TextView
+                android:id="@+id/tv_cebufang"
+                style="@style/font_3_15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="房屋撤布防" />
 
-        <CheckBox
-            android:id="@+id/cb_warm_tip"
-            android:layout_width="wrap_content"
+            <TextView
+                style="@style/font_9_15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@id/tv_cebufang"
+                android:text="(无住户有效)" />
+
+            <CheckBox
+                android:id="@+id/cb_house"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/sel_cb_switch"
+                android:button="@null" />
+
+        </RelativeLayout>
+
+        <View style="@style/divider_nomal_horizontal" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/sel_cb_switch"
-            android:button="@null" />
+            android:background="@color/bg_white"
+            android:padding="12dp">
 
-    </RelativeLayout>
+            <TextView
+                style="@style/font_3_15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="预警信息提示" />
 
-    <View style="@style/divider_nomal_horizontal" />
 
-    <RelativeLayout
-        android:id="@+id/rl_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/bg_white"
-        android:padding="12dp">
+            <CheckBox
+                android:id="@+id/cb_warm_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/sel_cb_switch"
+                android:button="@null" />
 
-        <TextView
-            style="@style/font_3_15"
-            android:layout_width="wrap_content"
+        </RelativeLayout>
+
+        <View style="@style/divider_nomal_horizontal" />
+
+        <RelativeLayout
+            android:id="@+id/rl_info"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="预警信息" />
+            android:background="@color/bg_white"
+            android:padding="12dp">
+
+            <TextView
+                style="@style/font_3_15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="预警信息" />
 
 
-        <ImageView
-            android:id="@+id/iv_arrow"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/arrow_right"
-            android:button="@null" />
+            <ImageView
+                android:id="@+id/iv_arrow"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/arrow_right"
+                android:button="@null" />
 
-        <TextView
-            android:id="@+id/tv_count"
-            style="@style/font_f_12"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="6dp"
-            android:layout_toLeftOf="@id/iv_arrow"
-            android:background="@drawable/circle_red"
-            android:gravity="center"
-            android:text="56" />
+            <TextView
+                android:id="@+id/tv_count"
+                style="@style/font_f_12"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="6dp"
+                android:layout_toLeftOf="@id/iv_arrow"
+                android:background="@drawable/circle_red"
+                android:gravity="center"
+                android:text="56" />
 
 
-    </RelativeLayout>
+        </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/rl_people"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@color/bg_white"
-        android:padding="12dp">
-
-        <ImageView
-            android:id="@+id/iv_people"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_centerVertical="true"
-            android:background="@drawable/house_people" />
-
-        <TextView
-            style="@style/font_3_15"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/rl_people"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@id/iv_people"
-            android:text="人员管理" />
+            android:layout_marginTop="12dp"
+            android:background="@color/bg_white"
+            android:padding="12dp">
+
+            <ImageView
+                android:id="@+id/iv_people"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/house_people" />
+
+            <TextView
+                style="@style/font_3_15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@id/iv_people"
+                android:text="人员管理" />
 
 
-        <ImageView
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/arrow_right" />
-    </RelativeLayout>
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/arrow_right" />
+        </RelativeLayout>
 
-    <View style="@style/divider_nomal_horizontal" />
+        <View style="@style/divider_nomal_horizontal" />
 
-    <RelativeLayout
-        android:id="@+id/rl_room"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/bg_white"
-        android:padding="12dp">
-
-        <ImageView
-            android:id="@+id/iv_room"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_centerVertical="true"
-            android:background="@drawable/house_room" />
-
-        <TextView
-            style="@style/font_3_15"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/rl_room"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@id/iv_room"
-            android:text="房间管理" />
+            android:background="@color/bg_white"
+            android:padding="12dp">
+
+            <ImageView
+                android:id="@+id/iv_room"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/house_room" />
+
+            <TextView
+                style="@style/font_3_15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@id/iv_room"
+                android:text="房间管理" />
 
 
-        <ImageView
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/arrow_right" />
-    </RelativeLayout>
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/arrow_right" />
+        </RelativeLayout>
 
-    <View style="@style/divider_nomal_horizontal" />
+        <View style="@style/divider_nomal_horizontal" />
 
-    <RelativeLayout
-        android:id="@+id/rl_apply"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/bg_white"
-        android:padding="12dp">
-
-        <ImageView
-            android:id="@+id/iv_apply"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_centerVertical="true"
-            android:background="@drawable/house_apply" />
-
-        <TextView
-            style="@style/font_3_15"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/rl_apply"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@id/iv_apply"
-            android:text="人员申报" />
+            android:background="@color/bg_white"
+            android:padding="12dp">
+
+            <ImageView
+                android:id="@+id/iv_apply"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/house_apply" />
+
+            <TextView
+                style="@style/font_3_15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@id/iv_apply"
+                android:text="人员申报" />
 
 
-        <ImageView
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/arrow_right" />
-    </RelativeLayout>
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/arrow_right" />
+        </RelativeLayout>
 
-    <View style="@style/divider_nomal_horizontal" />
+        <View style="@style/divider_nomal_horizontal" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/bg_white"
-        android:padding="12dp">
-
-        <ImageView
-            android:id="@+id/iv_shuidian"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_centerVertical="true"
-            android:background="@drawable/house_shuidian" />
-
-        <TextView
-            style="@style/font_n_15"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@id/iv_shuidian"
-            android:text="预警信息" />
+            android:background="@color/bg_white"
+            android:padding="12dp">
+
+            <ImageView
+                android:id="@+id/iv_shuidian"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/house_shuidian" />
+
+            <TextView
+                style="@style/font_n_15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@id/iv_shuidian"
+                android:text="预警信息" />
 
 
-        <ImageView
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/arrow_right" />
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/arrow_right" />
 
 
-    </RelativeLayout>
+        </RelativeLayout>
 
-    <View style="@style/divider_nomal_horizontal" />
+        <View style="@style/divider_nomal_horizontal" />
 
-    <RelativeLayout
-        android:id="@+id/rl_fangdao"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/bg_white"
-        android:padding="12dp">
-
-        <ImageView
-            android:id="@+id/iv_fangdao"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_centerVertical="true"
-            android:background="@drawable/house_fangdao" />
-
-        <TextView
-            style="@style/font_n_15"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/rl_fangdao"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@id/iv_fangdao"
-            android:text="居家防盗" />
+            android:background="@color/bg_white"
+            android:padding="12dp">
+
+            <ImageView
+                android:id="@+id/iv_fangdao"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/house_fangdao" />
+
+            <TextView
+                style="@style/font_n_15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@id/iv_fangdao"
+                android:text="居家防盗" />
 
 
-        <ImageView
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/arrow_right" />
-    </RelativeLayout>
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/arrow_right" />
+        </RelativeLayout>
 
-    <View style="@style/divider_nomal_horizontal" />
+        <View style="@style/divider_nomal_horizontal" />
 
-    <RelativeLayout
-        android:id="@+id/rl_deviceInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/bg_white"
-        android:padding="12dp">
-
-        <ImageView
-            android:id="@+id/iv_device"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_centerVertical="true"
-            android:background="@drawable/house_device" />
-
-        <TextView
-            style="@style/font_3_15"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/rl_deviceInfo"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@id/iv_device"
-            android:text="设备信息" />
+            android:background="@color/bg_white"
+            android:padding="12dp">
 
-        <ImageView
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/arrow_right" />
-    </RelativeLayout>
+            <ImageView
+                android:id="@+id/iv_device"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/house_device" />
 
-    <View style="@style/divider_nomal_horizontal" />
+            <TextView
+                style="@style/font_3_15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@id/iv_device"
+                android:text="设备信息" />
 
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/arrow_right" />
+        </RelativeLayout>
 
-</LinearLayout>
+        <View style="@style/divider_nomal_horizontal" />
+    </LinearLayout>
+    </ScrollView>
+    </LinearLayout>

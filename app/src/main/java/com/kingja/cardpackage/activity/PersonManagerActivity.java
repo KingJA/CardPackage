@@ -6,10 +6,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.ListView;
 
 import com.kingja.cardpackage.R;
-import com.kingja.cardpackage.adapter.PersonManagerAdapter;
-import com.kingja.cardpackage.adapter.RoomListAdapter;
-import com.kingja.cardpackage.entiy.ChuZuWu_List;
-import com.kingja.cardpackage.entiy.ChuZuWu_ListByRenter;
+import com.kingja.cardpackage.adapter.PersonManagerLvAdapter;
 import com.kingja.cardpackage.entiy.ChuZuWu_MenPaiAuthorizationList;
 import com.kingja.cardpackage.entiy.ErrorResult;
 import com.kingja.cardpackage.net.ThreadPoolTask;
@@ -17,6 +14,7 @@ import com.kingja.cardpackage.net.WebServiceCallBack;
 import com.kingja.cardpackage.util.AppUtil;
 import com.kingja.cardpackage.util.Constants;
 import com.kingja.cardpackage.util.DataManager;
+import com.kingja.cardpackage.util.TempConstants;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,25 +27,22 @@ import java.util.Map;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class PersonManagerActivity extends BackTitleActivity{
-    public static String HOUSE_ID="HOUSE_ID";
-    public static String ROOM_ID="ROOM_ID";
-    public static String ROOM_NUM="ROOM_NUM";
+public class PersonManagerActivity extends BackTitleActivity {
     private String mHouseId;
     private String mRoomId;
     private String mRoomNum;
 
     private SwipeRefreshLayout mSrlTopContent;
     private ListView mLvTopContent;
-    private List<ChuZuWu_MenPaiAuthorizationList.ContentBean.PERSONNELINFOLISTBean> personList=new ArrayList<>();
-    private PersonManagerAdapter mPersonManagerAdapter;
+    private List<ChuZuWu_MenPaiAuthorizationList.ContentBean.PERSONNELINFOLISTBean> personList = new ArrayList<>();
+    private PersonManagerLvAdapter mPersonManagerAdapter;
 
 
     @Override
     protected void initVariables() {
-        mHouseId = getIntent().getStringExtra(HOUSE_ID);
-        mRoomId = getIntent().getStringExtra(ROOM_ID);
-        mRoomNum = getIntent().getStringExtra(ROOM_NUM);
+        mHouseId = getIntent().getStringExtra(TempConstants.HOUSEID);
+        mRoomId = getIntent().getStringExtra(TempConstants.ROOMID);
+        mRoomNum = getIntent().getStringExtra(TempConstants.ROOMNUM);
     }
 
     @Override
@@ -55,7 +50,7 @@ public class PersonManagerActivity extends BackTitleActivity{
         mSrlTopContent = (SwipeRefreshLayout) findViewById(R.id.srl_top_content);
         mLvTopContent = (ListView) findViewById(R.id.lv_top_content);
 
-        mPersonManagerAdapter = new PersonManagerAdapter(this, personList);
+        mPersonManagerAdapter = new PersonManagerLvAdapter(this, personList);
         mLvTopContent.setAdapter(mPersonManagerAdapter);
 
         mSrlTopContent.setColorSchemeResources(R.color.bg_black);
@@ -71,13 +66,13 @@ public class PersonManagerActivity extends BackTitleActivity{
     protected void initNet() {
         mSrlTopContent.setRefreshing(true);
         Map<String, Object> param = new HashMap<>();
-        param.put("HOUSEID", mHouseId);
-        param.put("ROOMID", mRoomId);
-        param.put("TaskID", "1");
-        param.put("PageSize", "100");
-        param.put("PageIndex", "0");
+        param.put(TempConstants.HOUSEID, mHouseId);
+        param.put(TempConstants.ROOMID, mRoomId);
+        param.put(TempConstants.TaskID, "1");
+        param.put(TempConstants.PageSize, "100");
+        param.put(TempConstants.PageIndex, "0");
         new ThreadPoolTask.Builder()
-                .setGeneralParam(DataManager.getToken(), Constants.CARD_TYPE_HOUSE,Constants.ChuZuWu_MenPaiAuthorizationList, param)
+                .setGeneralParam(DataManager.getToken(), Constants.CARD_TYPE_HOUSE, Constants.ChuZuWu_MenPaiAuthorizationList, param)
                 .setBeanType(ChuZuWu_MenPaiAuthorizationList.class)
                 .setCallBack(new WebServiceCallBack<ChuZuWu_MenPaiAuthorizationList>() {
                     @Override
@@ -101,15 +96,15 @@ public class PersonManagerActivity extends BackTitleActivity{
 
     @Override
     protected void setData() {
-        setTitle("房间"+mRoomNum);
+        setTitle("房间" + mRoomNum);
 
     }
 
-    public static void goActivity(Context context, String houseId,String roomId,String roomNum) {
-        Intent intent = new Intent(context, PersonManagerActivity.class);
-        intent.putExtra(HOUSE_ID, houseId);
-        intent.putExtra(ROOM_ID, roomId);
-        intent.putExtra(ROOM_NUM, roomNum);
+    public static void goActivity(Context context, String houseId, String roomId, String roomNum) {
+        Intent intent = new Intent(context, PersonManagerActivity2.class);
+        intent.putExtra(TempConstants.HOUSEID, houseId);
+        intent.putExtra(TempConstants.ROOMID, roomId);
+        intent.putExtra(TempConstants.ROOMNUM, roomNum);
         context.startActivity(intent);
     }
 }
