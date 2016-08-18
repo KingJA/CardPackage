@@ -87,7 +87,7 @@ public class RoomListActivity extends BackTitleActivity implements AdapterView.O
             PersonManagerActivity.goActivity(this, entiy.getHOUSEID(), roomBean.getROOMID(), roomBean.getROOMNO() + "");
         }else{
             //跳转房间管理界面
-            RoomManagerActivity.goActivity(this,  roomBean.getROOMID(), roomBean.getROOMNO() + "");
+            RoomManagerActivity.goActivity(this, entiy.getHOUSEID(), roomBean.getROOMID(), roomBean.getROOMNO() + "");
         }
     }
 }

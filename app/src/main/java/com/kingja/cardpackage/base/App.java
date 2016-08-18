@@ -6,6 +6,9 @@ import android.content.SharedPreferences;
 
 import com.kingja.cardpackage.util.Constants;
 
+import org.xutils.BuildConfig;
+import org.xutils.x;
+
 
 /**
  * 项目名称：物联网城市防控(警用版)
@@ -25,8 +28,12 @@ public class App extends Application {
         mAppContext = getApplicationContext();
         mSharedPreferences = getSharedPreferences(Constants.APPLICATION_NAME,
                 MODE_PRIVATE);
+        initXutils3();
     }
-
+    private void initXutils3() {
+        x.Ext.init(this);
+        x.Ext.setDebug(BuildConfig.DEBUG);
+    }
 
     public static Context getContext() {
         return mAppContext;

@@ -27,4 +27,5 @@ dependencies {
     compile files('libs/ksoap2-android-assembly-2.5.8-jar-with-dependencies.jar')
     compile 'com.android.support:recyclerview-v7:23.2.1'
     compile 'org.xutils:xutils:3.3.36'
+    compile project(':libk-ui')
 }

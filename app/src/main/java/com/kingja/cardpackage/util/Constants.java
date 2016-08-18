@@ -38,5 +38,9 @@ public class Constants {
     public static final String ChuZuWu_MenPaiAuthorizationList = "ChuZuWu_MenPaiAuthorizationList";
     /*查询房间信息*/
     public static final String ChuZuWu_RoomInfo = "ChuZuWu_RoomInfo";
+    /*修改房间信息*/
+    public static final String ChuZuWu_ModifyRoom = "ChuZuWu_ModifyRoom";
+    /*设备信息*/
+    public static final String  ChuZuWu_DeviceLists = "ChuZuWu_DeviceLists";
 
 }

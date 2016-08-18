@@ -111,7 +111,7 @@ public class DetailRentActivity extends BackTitleActivity implements View.OnClic
         switch (v.getId()) {
             //设备信息
             case R.id.rl_deviceInfo:
-                ToastUtil.showToast("设备信息");
+                DeviceInfoActivity.goActivity(this,entiy);
                 break;
             //居家防盗
             case R.id.rl_fangdao:
@@ -135,12 +135,10 @@ public class DetailRentActivity extends BackTitleActivity implements View.OnClic
                 break;
             //人员管理
             case R.id.rl_people:
-                ToastUtil.showToast("人员管理");
                 RoomListActivity.goActivity(this,entiy,PERSON_MANAGER);
                 break;
             //房间管理
             case R.id.rl_room:
-                ToastUtil.showToast("房间管理");
                 RoomListActivity.goActivity(this,entiy,ROOM_MANAGER);
                 break;
             //人员申报

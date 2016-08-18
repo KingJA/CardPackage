@@ -204,6 +204,7 @@ public class ChuZuWu_List {
             private int DEPLOYSTATUS;
             private int HEADCOUNT;
             private String STATIONNO;
+            private boolean isExpland;
 
             public String getROOMID() {
                 return ROOMID;
@@ -243,6 +244,14 @@ public class ChuZuWu_List {
 
             public void setSTATIONNO(String STATIONNO) {
                 this.STATIONNO = STATIONNO;
+            }
+
+            public boolean isExpland() {
+                return isExpland;
+            }
+
+            public void setExpland(boolean expland) {
+                isExpland = expland;
             }
         }
     }

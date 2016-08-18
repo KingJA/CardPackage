@@ -15,6 +15,7 @@ import com.kingja.cardpackage.R;
 import com.kingja.cardpackage.db.DbDaoXutils3;
 import com.kingja.cardpackage.entiy.Basic_Dictionary_Kj;
 import com.kingja.cardpackage.entiy.ChuZuWu_List;
+import com.kingja.cardpackage.entiy.ChuZuWu_ModifyRoom;
 import com.kingja.cardpackage.entiy.ChuZuWu_RoomInfo;
 import com.kingja.cardpackage.entiy.ErrorResult;
 import com.kingja.cardpackage.net.ThreadPoolTask;
@@ -35,6 +36,7 @@ import java.util.Map;
  */
 public class RoomManagerActivity extends BackTitleActivity implements BackTitleActivity.OnRightClickListener, View.OnClickListener {
 
+    private String mHouseId;
     private String mRoomId;
     private String mRoomNum;
 
@@ -59,14 +61,25 @@ public class RoomManagerActivity extends BackTitleActivity implements BackTitleA
     private TextView tvHouseTitle;
     private TextView tvHousePs;
     private ChuZuWu_RoomInfo.ContentBean content;
+    private int mPayCode;
+    private int mDecorateCode;
+    private String mSquare;
+    private String mPrice;
+    private String mTitle;
+    private String mPersons;
+    private String mShi;
+    private String mTing;
+    private String mWei;
+    private String mYangtai;
+    private String mConfig;
+    private String mPs;
 
 
     @Override
     protected void initVariables() {
+        mHouseId = getIntent().getStringExtra(TempConstants.HOUSEID);
         mRoomId = getIntent().getStringExtra(TempConstants.ROOMID);
         mRoomNum = getIntent().getStringExtra(TempConstants.ROOMNUM);
-
-
     }
 
     @Override
@@ -125,15 +138,27 @@ public class RoomManagerActivity extends BackTitleActivity implements BackTitleA
     }
 
     private void fillData(ChuZuWu_RoomInfo.ContentBean content) {
-        tvHouseType.setText(content.getSHI() + "室" + content.getTING() + "厅" + content.getWEI() + "卫" + content.getYANGTAI() + "阳台");
-        tvHouseArea.setText(content.getSQUARE() + TempConstants.UNIT_SQUARE);
-        tvHouseDecorate.setText(content.getFIXTURE() + "");
-        tvHousePrice.setText(content.getPRICE() + TempConstants.UNIT_MOUTH);
-        tvHousePay.setText(content.getDEPOSIT() + "");
-        tvHousePersons.setText(content.getGALLERYFUL() + TempConstants.UNIT_PERSON);
+        mPayCode = content.getDEPOSIT();
+        mDecorateCode = content.getFIXTURE();
+        mSquare = content.getSQUARE()+"";
+        mPrice = content.getPRICE()+"";
+        mTitle = content.getTITLE();
+        mPersons = content.getGALLERYFUL()+"";
+        mShi = content.getSHI()+"";
+        mTing = content.getTING()+"";
+        mWei = content.getWEI()+"";
+        mYangtai = content.getYANGTAI()+"";
+        Basic_Dictionary_Kj paymentBean =  (Basic_Dictionary_Kj) DbDaoXutils3.getInstance().sleectFirst(Basic_Dictionary_Kj.class, "COLUMNCODE", "DEPOSIT", "COLUMNVALUE", mPayCode + "");
+        Basic_Dictionary_Kj decorateBean = (Basic_Dictionary_Kj) DbDaoXutils3.getInstance().sleectFirst(Basic_Dictionary_Kj.class, "COLUMNCODE", "FIXTURE", "COLUMNVALUE", mDecorateCode + "");
+        tvHouseType.setText(mShi + "室" + mTing + "厅" + mWei + "卫" + mYangtai + "阳台");
+        tvHouseArea.setText(mSquare + TempConstants.UNIT_SQUARE);
+        tvHouseDecorate.setText(decorateBean.getCOLUMNCOMMENT());
+        tvHousePay.setText(paymentBean.getCOLUMNCOMMENT());
+        tvHousePrice.setText(mPrice + TempConstants.UNIT_MOUTH);
+        tvHousePersons.setText(mPersons + TempConstants.UNIT_PERSON);
         cbHouseAuto.setChecked(content.getISAUTOPUBLISH() == 1);
         tvHouseConfig.setText("配置...");
-        tvHouseTitle.setText(content.getTITLE());
+        tvHouseTitle.setText(mTitle);
         tvHousePs.setText("备注...");
     }
 
@@ -159,14 +184,11 @@ public class RoomManagerActivity extends BackTitleActivity implements BackTitleA
         setTitle("房间" + mRoomNum);
     }
 
-    @Override
-    public void onRightClick() {
-        ToastUtil.showToast("保存");
 
-    }
 
-    public static void goActivity(Context context, String roomId, String roomNum) {
+    public static void goActivity(Context context, String houseId,String roomId, String roomNum) {
         Intent intent = new Intent(context, RoomManagerActivity.class);
+        intent.putExtra(TempConstants.HOUSEID, houseId);
         intent.putExtra(TempConstants.ROOMID, roomId);
         intent.putExtra(TempConstants.ROOMNUM, roomNum);
         context.startActivity(intent);
@@ -187,36 +209,35 @@ public class RoomManagerActivity extends BackTitleActivity implements BackTitleA
         super.onClick(v);
         switch (v.getId()) {
             case R.id.rl_houseType://房型,室厅卫阳1
-                EditRoomActivity.goActivity(this, content.getSHI()+"", content.getTING()+"" , content.getWEI()+"", content.getYANGTAI()+"", HOUSE_TYPE);
+                EditRoomActivity.goActivity(this, mShi+"", mTing+"" , mWei+"", mYangtai+"", HOUSE_TYPE);
                 break;
             case R.id.rl_houseArea://面积2
-                EditTextActivity.goActivity(this, "面积", content.getSQUARE() + "", "平方米", HOUSE_AREA);
+
+                EditTextActivity.goActivity(this, "面积", mSquare + "", "平方米", HOUSE_AREA);
                 break;
             case R.id.rl_houseDecorate://装修程度3
+                EditGvActivity.goActivity(this, "装修程度", mDecorateCode + "", HOUSE_DECORATE);
                 break;
             case R.id.rl_housePrice://房租4
-                EditTextActivity.goActivity(this, "房租", content.getPRICE() + "", "元/月", HOUSE_PRICE);
+                EditTextActivity.goActivity(this, "房租", mPrice + "", "元/月", HOUSE_PRICE);
                 break;
             case R.id.rl_housePay://支付方式5
+                EditGvActivity.goActivity(this, "房租支付方式", mPayCode + "", HOUSE_PAY);
                 break;
             case R.id.rl_housePersons://容纳人数6
-                EditTextActivity.goActivity(this, "容纳人数", content.getGALLERYFUL() + "", "人", HOUSE_PERSONS);
+                EditTextActivity.goActivity(this, "容纳人数", mPersons + "", "人", HOUSE_PERSONS);
                 break;
             case R.id.rl_houseConfig://房间配置7
+                EditTextAreaActivity.goActivity(this, "房间配置", mConfig , HOUSE_CONFIG);
                 break;
             case R.id.rl_houseTitle://发布标题8
+                EditTextAreaActivity.goActivity(this, "发布标题", mTitle , HOUSE_TITLE);
                 break;
             case R.id.rl_housePs://备注9
+                EditTextAreaActivity.goActivity(this, "备注", mPs , HOUSE_PS);
                 break;
         }
     }
-//    tvHouseType.setText(content.getSHI()
-//    tvHouseDecorate.setText(content.getFI
-//    tvHousePay.setText(content.getDEPOSIT
-//    cbHouseAuto.setChecked(content.getISA
-//    tvHouseConfig.setText("配置...");
-//    tvHouseTitle.setText(content.getTITLE
-//    tvHousePs.setText("备注...");
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -225,33 +246,80 @@ public class RoomManagerActivity extends BackTitleActivity implements BackTitleA
             Log.e(TAG, "RESULT_OK: ");
             switch (requestCode) {
                 case 1:
-                    tvHouseType.setText(data.getStringExtra(EditRoomActivity.SHI) + "室"
-                            + data.getStringExtra(EditRoomActivity.TING) + "厅"
-                            + data.getStringExtra(EditRoomActivity.WEI) + "卫"
-                            + data.getStringExtra(EditRoomActivity.YANGTAI) + "阳台");
+                    mShi = data.getStringExtra(EditRoomActivity.SHI)+"";
+                    mTing = data.getStringExtra(EditRoomActivity.TING)+"";
+                    mWei = data.getStringExtra(EditRoomActivity.WEI)+"";
+                    mYangtai =data.getStringExtra(EditRoomActivity.YANGTAI) +"";
+                    tvHouseType.setText(mShi + "室"+ mTing + "厅"+mWei + "卫"+ mYangtai + "阳台");
                     break;
                 case HOUSE_AREA:
-                    Log.e(TAG, "HOUSE_AREA: ");
-                    tvHouseArea.setText(data.getStringExtra("VALUE"));
+                    mSquare=data.getStringExtra("VALUE");
+                    tvHouseArea.setText(mSquare+TempConstants.UNIT_SQUARE);
                     break;
                 case 3:
+                    mDecorateCode=Integer.valueOf(data.getStringExtra("CODE"));
+                    tvHouseDecorate.setText(data.getStringExtra("VALUE"));
                     break;
                 case 4:
-                    tvHousePrice.setText(data.getStringExtra("VALUE"));
+                    mPrice=data.getStringExtra("VALUE");
+                    tvHousePrice.setText(mPrice+TempConstants.UNIT_MOUTH);
                     break;
                 case 5:
+                    mPayCode=Integer.valueOf(data.getStringExtra("CODE"));
+                    tvHousePay.setText(data.getStringExtra("VALUE"));
                     break;
                 case 6:
-                    tvHousePersons.setText(data.getStringExtra("VALUE"));
+                    mPersons=data.getStringExtra("VALUE");
+                    tvHousePersons.setText(mPersons+TempConstants.UNIT_PERSON);
                     break;
                 case 7:
+                    mConfig=data.getStringExtra("VALUE");
+                    tvHouseConfig.setText(mConfig);
                     break;
                 case 8:
+                    mTitle=data.getStringExtra("VALUE");
+                    tvHouseTitle.setText(mTitle);
                     break;
                 case 9:
+                    mPs=data.getStringExtra("VALUE");
+                    tvHousePs.setText(mPs);
                     break;
 
             }
         }
+    }
+
+    @Override
+    public void onRightClick() {
+        setProgressDialog(true);
+        Map<String, Object> param = new HashMap<>();
+        param.put(TempConstants.TaskID, "1");
+        param.put("HOUSEID", mHouseId);
+        param.put("ROOMID", mRoomId);
+        param.put("FIXTURE", mDecorateCode);
+        param.put("SQUARE", mSquare);
+        param.put("PRICE", mPrice);
+        param.put("SHI", mShi);
+        param.put("TING", mTing);
+        param.put("WEI", mWei);
+        param.put("YANGTAI", mYangtai);
+        param.put("GALLERYFUL", mPersons);
+        param.put("DEPOSIT", mPayCode);
+        param.put("ISAUTOPUBLISH", cbHouseAuto.isChecked()?"1":"0");
+        param.put("TITLE", mTitle);
+        new ThreadPoolTask.Builder()
+                .setGeneralParam(DataManager.getToken(), Constants.CARD_TYPE_RENT, Constants.ChuZuWu_ModifyRoom, param)
+                .setBeanType(ChuZuWu_ModifyRoom.class)
+                .setCallBack(new WebServiceCallBack<ChuZuWu_ModifyRoom>() {
+                    @Override
+                    public void onSuccess(ChuZuWu_ModifyRoom bean) {
+                        setProgressDialog(false);
+                    }
+                    @Override
+                    public void onErrorResult(ErrorResult errorResult) {
+                        setProgressDialog(false);
+                    }
+                }).build().execute();
+
     }
 }

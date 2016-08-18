@@ -22,20 +22,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity"/>
-        <activity android:name=".activity.RentActivity"/>
-        <activity android:name=".activity.HouseActivity"/>
-        <activity android:name=".activity.ShopActivity"/>
-        <activity android:name=".activity.DetailHouseActivity"/>
-        <activity android:name=".activity.DetailRentActivity"/>
-        <activity android:name=".activity.DetailShopActivity"/>
-        <activity android:name=".activity.RoomListActivity"/>
+        <activity android:name=".activity.MainActivity"/><!--主界面-->
+        <activity android:name=".activity.RentActivity"/><!--我家出租屋列表-->
+        <activity android:name=".activity.HouseActivity"/><!--我的家列表-->
+        <activity android:name=".activity.ShopActivity"/><!--我的店列表-->
+        <activity android:name=".activity.DetailHouseActivity"/><!--我的家详情-->
+        <activity android:name=".activity.DetailRentActivity"/><!--我家出租屋详情-->
+        <activity android:name=".activity.DetailShopActivity"/><!--店铺详情-->
+        <activity android:name=".activity.RoomListActivity"/><!--房间列表-->
         <activity android:name=".activity.PersonManagerActivity"/>
-        <activity android:name=".activity.PersonManagerActivity2"/>
-        <activity android:name=".activity.RoomManagerActivity"/>
-        <activity android:name=".activity.EditTextActivity"/>
-        <activity android:name=".activity.EditRoomActivity"/>
-        <activity android:name=".activity.EditTextAreaActivity"/>
+        <activity android:name=".activity.PersonManagerActivity2"/><!--人员管理-->
+        <activity android:name=".activity.RoomManagerActivity"/><!--房屋管理-->
+        <activity android:name=".activity.EditTextActivity"/><!--数字编辑-->
+        <activity android:name=".activity.EditRoomActivity"/><!--房间编辑-->
+        <activity android:name=".activity.EditTextAreaActivity"/><!--标题，备注编辑-->
+        <activity android:name=".activity.EditGvActivity"/><!--选择编辑-->
+        <activity android:name=".activity.DeviceInfoActivity"/><!--设备信息-->
     </application>
 
 
