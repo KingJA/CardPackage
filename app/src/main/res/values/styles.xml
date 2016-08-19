@@ -42,6 +42,10 @@
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/font_0</item>
         <item name="android:singleLine">true</item>
+    </style>  <style name="font_0_15">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/font_0</item>
+        <item name="android:singleLine">true</item>
     </style>
 
     <style name="font_f_20">

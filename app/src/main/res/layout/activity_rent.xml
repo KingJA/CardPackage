@@ -7,14 +7,15 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/bg_blue"
         android:padding="16dp">
 
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
             android:background="@drawable/bg_house_icon" />
 
         <LinearLayout
@@ -31,6 +32,7 @@
                 android:text="大自然" />
 
             <TextView
+                android:layout_marginTop="4dp"
                 android:id="@+id/tv_address"
                 style="@style/font_f_12"
                 android:layout_width="match_parent"
@@ -41,7 +43,7 @@
                 android:id="@+id/iv_sign"
                 android:layout_width="86dp"
                 android:layout_height="22dp"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="4dp"
                 android:background="@drawable/sel_sign" />
         </LinearLayout>
 

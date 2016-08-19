@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import com.kingja.cardpackage.R;
 import com.kingja.cardpackage.base.BaseActivity;
+import com.kingja.ui.SwitchMultiButton;
+
+import java.util.List;
 
 /**
  * Description：TODO
@@ -26,9 +29,10 @@ public abstract class BackTitleActivity extends BaseActivity implements View.OnC
     private FrameLayout mFlContent;
     private OnMenuClickListener onMenuClickListener;
     private OnRightClickListener onRightClickListener;
-    private RelativeLayout mRlTopRight;
+    protected RelativeLayout mRlTopRight;
     private TextView mTvTopRight;
     private View mVDivider;
+    private SwitchMultiButton mSbSwitch;
 
 
     @Override
@@ -45,6 +49,7 @@ public abstract class BackTitleActivity extends BaseActivity implements View.OnC
         mTvTopRight = (TextView) findViewById(R.id.tv_top_right);
         mFlContent = (FrameLayout) findViewById(R.id.fl_content);
         mVDivider = (View) findViewById(R.id.v_divider);
+        mSbSwitch = (SwitchMultiButton) findViewById(R.id.sb_swtich);
 
         mRlTopBack.setOnClickListener(this);
         mRlTopMenu.setOnClickListener(this);
@@ -84,8 +89,18 @@ public abstract class BackTitleActivity extends BaseActivity implements View.OnC
      * @param title 标题
      */
     public void setTitle(String title) {
-        mTvTopTitle.setVisibility(View.VISIBLE);
         mTvTopTitle.setText(title);
+        mTvTopTitle.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * 切换按钮
+     * @param swtichList 按钮文字
+     */
+    public void setSwitch(SwitchMultiButton.OnSwitchListener onSwitchListener ,List<String> swtichList) {
+        mSbSwitch.setText(swtichList);
+        mSbSwitch.setOnSwitchListener(onSwitchListener);
+        mSbSwitch.setVisibility(View.VISIBLE);
     }
 
     /**

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.kingja.cardpackage.R;
 import com.kingja.cardpackage.entiy.ChuZuWu_List;
+import com.kingja.cardpackage.util.ActivityUtil;
 import com.kingja.cardpackage.util.ToastUtil;
 
 /**
@@ -143,7 +144,7 @@ public class DetailRentActivity extends BackTitleActivity implements View.OnClic
                 break;
             //人员申报
             case R.id.rl_apply:
-                ToastUtil.showToast("人员申报");
+                PersonApplyActivity.goActivity(this,entiy);
                 break;
             default:
                 break;

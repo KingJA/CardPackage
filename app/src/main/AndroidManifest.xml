@@ -38,6 +38,7 @@
         <activity android:name=".activity.EditTextAreaActivity"/><!--标题，备注编辑-->
         <activity android:name=".activity.EditGvActivity"/><!--选择编辑-->
         <activity android:name=".activity.DeviceInfoActivity"/><!--设备信息-->
+        <activity android:name=".activity.PersonApplyActivity"/><!--人员申报-->
     </application>
 
 
