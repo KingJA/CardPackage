@@ -13,15 +13,16 @@ import com.flyco.dialog.listener.OnOperItemClickL;
 import com.flyco.dialog.widget.NormalListDialog;
 import com.kingja.cardpackage.R;
 import com.kingja.cardpackage.adapter.DividerItemDecoration;
-import com.kingja.cardpackage.adapter.PersonManagerRvAdapter;
+import com.kingja.cardpackage.adapter.PersonApplyRvAdapter;
 import com.kingja.cardpackage.adapter.RoomListAdapter;
 import com.kingja.cardpackage.base.BaseFragment;
+import com.kingja.cardpackage.entiy.ChuZuWu_LKSelfReportingList;
+import com.kingja.cardpackage.entiy.ChuZuWu_LKSelfReportingOut;
 import com.kingja.cardpackage.entiy.ChuZuWu_List;
-import com.kingja.cardpackage.entiy.ChuZuWu_MenPaiAuthorizationList;
 import com.kingja.cardpackage.entiy.ErrorResult;
 import com.kingja.cardpackage.net.ThreadPoolTask;
 import com.kingja.cardpackage.net.WebServiceCallBack;
-import com.kingja.cardpackage.ui.DialogUtil;
+import com.kingja.cardpackage.util.DialogUtil;
 import com.kingja.cardpackage.util.AppUtil;
 import com.kingja.cardpackage.util.Constants;
 import com.kingja.cardpackage.util.DataManager;
@@ -36,13 +37,15 @@ import java.util.Map;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class ApplyListFragment extends BaseFragment implements OnOperItemClickL,SwipeRefreshLayout.OnRefreshListener {
+
+public class ApplyListFragment extends BaseFragment implements OnOperItemClickL, SwipeRefreshLayout.OnRefreshListener,PersonApplyRvAdapter.OnDeliteItemListener {
     private LinearLayout mLlSelectRoom;
     private TextView mTvApplyRoomNum;
     private SwipeRefreshLayout mSrlApplyList;
     private RecyclerView mRvApplyList;
     private ChuZuWu_List.ContentBean entiy;
     private NormalListDialog mNormalListDialog;
+    private PersonApplyRvAdapter mPersonApplyRvAdapter;
 
 
     public static ApplyListFragment newInstance(ChuZuWu_List.ContentBean bean) {
@@ -64,7 +67,6 @@ public class ApplyListFragment extends BaseFragment implements OnOperItemClickL,
         mTvApplyRoomNum = (TextView) view.findViewById(R.id.tv_apply_roomNum);
         mSrlApplyList = (SwipeRefreshLayout) view.findViewById(R.id.srl_apply_list);
         mRvApplyList = (RecyclerView) view.findViewById(R.id.rv_apply_list);
-
 
         mSrlApplyList.setColorSchemeResources(R.color.bg_black);
         mSrlApplyList.setProgressViewOffset(false, 0, AppUtil.dp2px(24));
@@ -89,18 +91,19 @@ public class ApplyListFragment extends BaseFragment implements OnOperItemClickL,
         param.put(TempConstants.PageSize, "100");
         param.put(TempConstants.PageIndex, "0");
         new ThreadPoolTask.Builder()
-                .setGeneralParam(DataManager.getToken(), Constants.CARD_TYPE_HOUSE, Constants.ChuZuWu_MenPaiAuthorizationList, param)
-                .setBeanType(ChuZuWu_MenPaiAuthorizationList.class)
-                .setCallBack(new WebServiceCallBack<ChuZuWu_MenPaiAuthorizationList>() {
+                .setGeneralParam(DataManager.getToken(), Constants.CARD_TYPE_HOUSE, Constants.ChuZuWu_LKSelfReportingList, param)
+                .setBeanType(ChuZuWu_LKSelfReportingList.class)
+                .setCallBack(new WebServiceCallBack<ChuZuWu_LKSelfReportingList>() {
                     @Override
-                    public void onSuccess(ChuZuWu_MenPaiAuthorizationList bean) {
+                    public void onSuccess(ChuZuWu_LKSelfReportingList bean) {
                         mSrlApplyList.setRefreshing(false);
-                        PersonManagerRvAdapter mPersonManagerAdapter = new PersonManagerRvAdapter(getActivity(), bean.getContent().getPERSONNELINFOLIST());
+                        mPersonApplyRvAdapter = new PersonApplyRvAdapter(getActivity(), bean.getContent().getPERSONNELINFOLIST());
+                        mPersonApplyRvAdapter.setOnDeliteItemListener(ApplyListFragment.this);
                         mRvApplyList.setLayoutManager(new LinearLayoutManager(getActivity()));
                         mRvApplyList.addItemDecoration(new DividerItemDecoration(getActivity(),
                                 DividerItemDecoration.VERTICAL_LIST));
                         mRvApplyList.setHasFixedSize(true);
-                        mRvApplyList.setAdapter(mPersonManagerAdapter);
+                        mRvApplyList.setAdapter(mPersonApplyRvAdapter);
                     }
 
                     @Override
@@ -138,5 +141,33 @@ public class ApplyListFragment extends BaseFragment implements OnOperItemClickL,
     @Override
     public void onRefresh() {
         mSrlApplyList.setRefreshing(false);
+    }
+
+    @Override
+    public void onDeliteItem(String listId, final int position) {
+        mSrlApplyList.setRefreshing(true);
+        Map<String, Object> param = new HashMap<>();
+        param.put(TempConstants.TaskID, "1");
+        param.put("LISTID", listId);
+        param.put("OUTREPORTERROLE", "1");
+        param.put("OUTOPERATOR",  DataManager.getUserId());
+        param.put("OUTOPERATORPHONE", DataManager.getUserPhone());
+
+        new ThreadPoolTask.Builder()
+                .setGeneralParam(DataManager.getToken(), Constants.CARD_TYPE_HOUSE, Constants.ChuZuWu_LKSelfReportingOut, param)
+                .setBeanType(ChuZuWu_LKSelfReportingOut.class)
+                .setCallBack(new WebServiceCallBack<ChuZuWu_LKSelfReportingOut>() {
+                    @Override
+                    public void onSuccess(ChuZuWu_LKSelfReportingOut bean) {
+                        mSrlApplyList.setRefreshing(false);
+                        mPersonApplyRvAdapter.deleteItem(position);
+
+                    }
+
+                    @Override
+                    public void onErrorResult(ErrorResult errorResult) {
+                        mSrlApplyList.setRefreshing(false);
+                    }
+                }).build().execute();
     }
 }

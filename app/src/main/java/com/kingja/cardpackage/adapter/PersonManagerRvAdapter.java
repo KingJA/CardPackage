@@ -17,6 +17,8 @@ import java.util.List;
  * Email:kingjavip@gmail.com
  */
 public class PersonManagerRvAdapter extends BaseRvAdaper<ChuZuWu_MenPaiAuthorizationList.ContentBean.PERSONNELINFOLISTBean> {
+    private OnDeliteItemListener onDeliteItemListener;
+
     public PersonManagerRvAdapter(Context context, List<ChuZuWu_MenPaiAuthorizationList.ContentBean.PERSONNELINFOLISTBean> list) {
         super(context, list);
     }
@@ -33,28 +35,40 @@ public class PersonManagerRvAdapter extends BaseRvAdaper<ChuZuWu_MenPaiAuthoriza
 
     @Override
     protected void bindHolder(ViewHolder baseHolder, ChuZuWu_MenPaiAuthorizationList.ContentBean.PERSONNELINFOLISTBean bean, final int position) {
-        PersonManagerViewHolder holder= (PersonManagerViewHolder) baseHolder;
+        PersonManagerViewHolder holder = (PersonManagerViewHolder) baseHolder;
         holder.tv_name.setText(bean.getNAME());
-        holder.tv_cardId.setText("身份证号: "+bean.getCARDID());
+        holder.tv_cardId.setText("身份证号: " + bean.getCARDID());
         holder.tv_phone.setText(bean.getPHONENUM());
         holder.tv_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtil.showToast("删除");
-                list.remove(position);
-                notifyItemRemoved(position);
+                if (onDeliteItemListener != null) {
+                    onDeliteItemListener.onDeliteItem(position);
+                }
             }
         });
     }
 
+    public void setOnDeliteItemListener(OnDeliteItemListener onDeliteItemListener) {
+        this.onDeliteItemListener = onDeliteItemListener;
+    }
+
+    public interface OnDeliteItemListener {
+        void onDeliteItem(int position);
+    }
+
+    public void deleteItem(int position) {
+        list.remove(position);
+        notifyItemRemoved(position);
+    }
 
 
+    class PersonManagerViewHolder extends ViewHolder {
+        public TextView tv_cardId;
+        public TextView tv_phone;
+        public TextView tv_name;
+        public TextView tv_delete;
 
-    class PersonManagerViewHolder extends ViewHolder{
-        public  TextView tv_cardId;
-        public  TextView tv_phone;
-        public  TextView tv_name;
-        public  TextView tv_delete;
         public PersonManagerViewHolder(View itemView) {
             super(itemView);
             tv_cardId = (TextView) itemView.findViewById(R.id.tv_cardId);

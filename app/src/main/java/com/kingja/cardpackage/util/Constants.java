@@ -10,7 +10,7 @@ public class Constants {
     /**
      * Webservice参数
      */
-    public static final String WEBSERVER_URL = "http://zafkapp.test.iotone.cn/rentalestate.asmx";// WebServices访问地址，测试
+    public static final String WEBSERVER_URL = "http://zafkapp.test.iotone.cn:12025/rentalestate.asmx";// WebServices访问地址，测试
     public static final String WEBSERVER_NAMESPACE = "http://tempuri.org/";// 命名空间
     public static final String WEBSERVER_REREQUEST = "RERequest";
     public static final String APPLICATION_NAME = "CardPackage";
@@ -41,6 +41,12 @@ public class Constants {
     /*修改房间信息*/
     public static final String ChuZuWu_ModifyRoom = "ChuZuWu_ModifyRoom";
     /*设备信息*/
-    public static final String  ChuZuWu_DeviceLists = "ChuZuWu_DeviceLists";
+    public static final String ChuZuWu_DeviceLists = "ChuZuWu_DeviceLists";
+    /*申报列表*/
+    public static final String ChuZuWu_LKSelfReportingList = "ChuZuWu_LKSelfReportingList";
+    /*申报离开*/
+    public static final String ChuZuWu_LKSelfReportingOut = "ChuZuWu_LKSelfReportingOut";
+    /*自主申报*/
+    public static final String ChuZuWu_LKSelfReportingIn = "ChuZuWu_LKSelfReportingIn";
 
 }

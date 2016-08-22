@@ -19,6 +19,7 @@ import com.kingja.cardpackage.net.WebServiceCallBack;
 import com.kingja.cardpackage.util.ActivityUtil;
 import com.kingja.cardpackage.util.AppInfoUtil;
 import com.kingja.cardpackage.util.CheckUtil;
+import com.kingja.cardpackage.util.DataManager;
 import com.kingja.cardpackage.util.PhoneUtil;
 import com.kingja.cardpackage.util.SpUtils;
 
@@ -100,8 +101,9 @@ public class LoginActivity extends BaseActivity {
                     @Override
                     public void onSuccess(User_Login bean) {
                         setProgressDialog(false);
-                        Log.e(TAG, "TOKEN: "+bean.getContent().getToken());
-                        SpUtils.put("TOKEN", bean.getContent().getToken());
+                        DataManager.putToken(bean.getContent().getToken());
+                        DataManager.putUserId(bean.getContent().getUserID());
+                        DataManager.putUserPhone(bean.getContent().getPhone());
                         ActivityUtil.goActivityAndFinish(LoginActivity.this, MainActivity.class);
                     }
 

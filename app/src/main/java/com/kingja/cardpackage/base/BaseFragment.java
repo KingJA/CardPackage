@@ -18,7 +18,7 @@ import com.kingja.cardpackage.base.BaseActivity;
  */
 public abstract class BaseFragment extends Fragment {
 
-    private BaseActivity mActivity;
+    protected BaseActivity mActivity;
 
     @Override
     public void onAttach(Context context) {

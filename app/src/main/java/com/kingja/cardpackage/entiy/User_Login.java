@@ -11,25 +11,27 @@ public class User_Login {
 
     /**
      * ResultCode : 0
-     * ResultText : 注册成功
-     * DataTypeCode : User_Login
+     * ResultText : 登录成功
+     * DataTypeCode : USER_LOGIN
      * TaskID : 1
-     * Content : {"Token":"XXX","USERID":"XXX","NAME":"张三","PHONE":"13805771234","IDENTITYCARD":"330303199909091234"}
+     * Content : {"UserID":"1C7DAA93DBA24DC98BBB586B29392243","Name":"金友发","Phone":"13456058817","IdentityCard":"33032719840220097X","Token":"B6B5347CF62A414AA7D223018F426660"}
+     * StableVersion : 1.26
      */
 
     private int ResultCode;
     private String ResultText;
     private String DataTypeCode;
-    private String TaskID;
+    private int TaskID;
     /**
-     * Token : XXX
-     * USERID : XXX
-     * NAME : 张三
-     * PHONE : 13805771234
-     * IDENTITYCARD : 330303199909091234
+     * UserID : 1C7DAA93DBA24DC98BBB586B29392243
+     * Name : 金友发
+     * Phone : 13456058817
+     * IdentityCard : 33032719840220097X
+     * Token : B6B5347CF62A414AA7D223018F426660
      */
 
     private ContentBean Content;
+    private String StableVersion;
 
     public int getResultCode() {
         return ResultCode;
@@ -55,11 +57,11 @@ public class User_Login {
         this.DataTypeCode = DataTypeCode;
     }
 
-    public String getTaskID() {
+    public int getTaskID() {
         return TaskID;
     }
 
-    public void setTaskID(String TaskID) {
+    public void setTaskID(int TaskID) {
         this.TaskID = TaskID;
     }
 
@@ -71,51 +73,59 @@ public class User_Login {
         this.Content = Content;
     }
 
+    public String getStableVersion() {
+        return StableVersion;
+    }
+
+    public void setStableVersion(String StableVersion) {
+        this.StableVersion = StableVersion;
+    }
+
     public static class ContentBean {
+        private String UserID;
+        private String Name;
+        private String Phone;
+        private String IdentityCard;
         private String Token;
-        private String USERID;
-        private String NAME;
-        private String PHONE;
-        private String IDENTITYCARD;
+
+        public String getUserID() {
+            return UserID;
+        }
+
+        public void setUserID(String UserID) {
+            this.UserID = UserID;
+        }
+
+        public String getName() {
+            return Name;
+        }
+
+        public void setName(String Name) {
+            this.Name = Name;
+        }
+
+        public String getPhone() {
+            return Phone;
+        }
+
+        public void setPhone(String Phone) {
+            this.Phone = Phone;
+        }
+
+        public String getIdentityCard() {
+            return IdentityCard;
+        }
+
+        public void setIdentityCard(String IdentityCard) {
+            this.IdentityCard = IdentityCard;
+        }
 
         public String getToken() {
             return Token;
         }
 
-        public void setToken(String token) {
-            this.Token = token;
-        }
-
-        public String getUSERID() {
-            return USERID;
-        }
-
-        public void setUSERID(String USERID) {
-            this.USERID = USERID;
-        }
-
-        public String getNAME() {
-            return NAME;
-        }
-
-        public void setNAME(String NAME) {
-            this.NAME = NAME;
-        }
-
-        public String getPHONE() {
-            return PHONE;
-        }
-
-        public void setPHONE(String PHONE) {
-            this.PHONE = PHONE;
-        }
-
-        public String getIDENTITYCARD() {
-            return IDENTITYCARD;
-        }
-
-        public void setIDENTITYCARD(String IDENTITYCARD) {
-            this.IDENTITYCARD = IDENTITYCARD;
+        public void setToken(String Token) {
+            this.Token = Token;
         }
     }
 }
