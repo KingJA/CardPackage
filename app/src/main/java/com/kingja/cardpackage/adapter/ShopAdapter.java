@@ -27,7 +27,7 @@ public class ShopAdapter extends BaseLvAdapter<ShangPu_List.ContentBean> {
         ViewHolder viewHolder = null;
         if (convertView == null) {
             convertView = View
-                    .inflate(context, R.layout.item_house_list, null);
+                    .inflate(context, R.layout.item_shop_list, null);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {

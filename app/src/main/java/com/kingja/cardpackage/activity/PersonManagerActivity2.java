@@ -29,7 +29,7 @@ import java.util.Map;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class PersonManagerActivity2 extends BackTitleActivity{
+public class PersonManagerActivity2 extends BackTitleActivity implements SwipeRefreshLayout.OnRefreshListener{
     public static String HOUSE_ID="HOUSEID";
     public static String ROOM_ID="ROOMID";
     public static String ROOM_NUM="ROOMNUM";
@@ -103,7 +103,7 @@ public class PersonManagerActivity2 extends BackTitleActivity{
 
     @Override
     protected void initData() {
-
+        mSrl.setOnRefreshListener(this);
     }
 
     @Override
@@ -118,5 +118,10 @@ public class PersonManagerActivity2 extends BackTitleActivity{
         intent.putExtra(ROOM_ID, roomId);
         intent.putExtra(ROOM_NUM, roomNum);
         context.startActivity(intent);
+    }
+
+    @Override
+    public void onRefresh() {
+        mSrl.setRefreshing(false);
     }
 }

@@ -211,9 +211,8 @@ public class ApplyFragment extends BaseFragment implements View.OnClickListener,
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
         final Intent result = data;
-        mNormalListDialog.show();
+        mProgressDialog.show();
         new Thread() {
             @Override
             public void run() {
@@ -240,7 +239,7 @@ public class ApplyFragment extends BaseFragment implements View.OnClickListener,
 
         @Override
         public void handleMessage(Message msg) {
-            mNormalListDialog.dismiss();
+            mProgressDialog.dismiss();
             switch (msg.what) {
                 case OcrEngine.RECOG_FAIL:
                     Toast.makeText(mPersonApplyActivity, R.string.reco_dialog_blur, Toast.LENGTH_SHORT).show();

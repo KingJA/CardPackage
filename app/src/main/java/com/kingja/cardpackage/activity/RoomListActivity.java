@@ -22,7 +22,7 @@ import java.util.List;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class RoomListActivity extends BackTitleActivity implements AdapterView.OnItemClickListener {
+public class RoomListActivity extends BackTitleActivity implements AdapterView.OnItemClickListener ,SwipeRefreshLayout.OnRefreshListener{
     private ChuZuWu_List.ContentBean entiy;
     private SwipeRefreshLayout mSrlTopContent;
     private ListView mLvTopContent;
@@ -63,6 +63,7 @@ public class RoomListActivity extends BackTitleActivity implements AdapterView.O
     @Override
     protected void initData() {
         mLvTopContent.setOnItemClickListener(this);
+        mSrlTopContent.setOnRefreshListener(this);
     }
 
     @Override
@@ -89,5 +90,10 @@ public class RoomListActivity extends BackTitleActivity implements AdapterView.O
             //跳转房间管理界面
             RoomManagerActivity.goActivity(this, entiy.getHOUSEID(), roomBean.getROOMID(), roomBean.getROOMNO() + "");
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        mSrlTopContent.setRefreshing(false);
     }
 }
