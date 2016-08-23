@@ -21,7 +21,6 @@ import com.kingja.cardpackage.util.AppInfoUtil;
 import com.kingja.cardpackage.util.CheckUtil;
 import com.kingja.cardpackage.util.DataManager;
 import com.kingja.cardpackage.util.PhoneUtil;
-import com.kingja.cardpackage.util.SpUtils;
 
 /**
  * Description：TODO
