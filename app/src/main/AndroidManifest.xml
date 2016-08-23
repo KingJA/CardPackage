@@ -42,9 +42,15 @@
         <activity android:name=".activity.EditRoomActivity" /><!--房间编辑-->
         <activity android:name=".activity.EditTextAreaActivity" /><!--标题，备注编辑-->
         <activity android:name=".activity.EditGvActivity" /><!--选择编辑-->
-        <activity android:name=".activity.DeviceInfoActivity" /><!--设备信息-->
+        <activity android:name=".activity.RentDeviceInfoActivity" /><!--设备信息-->
         <activity android:name=".activity.PersonApplyActivity" /><!--人员申报-->
+
         <activity android:name="lib.kingja.ocr.ACamera"   android:screenOrientation="landscape"/>><!--OCR界面-->
+      <!--  ========== ========== ========== 我的住房 ========== ========== ==========-->
+        <activity android:name=".activity.HouseDeviceInfoActivity" /><!--设备信息-->
+
+        <!--  ========== ========== ========== 出租房代管 ========== ========== ==========-->
+        <activity android:name=".activity.AgentActivity" /><!--出租房代管列表-->
     </application>
 
 

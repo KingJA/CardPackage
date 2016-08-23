@@ -3,6 +3,7 @@ package com.kingja.cardpackage.activity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.kingja.cardpackage.R;
@@ -32,6 +33,7 @@ public class ShopActivity extends BackTitleActivity implements SwipeRefreshLayou
     private ListView mLvTopContent;
     private ShopAdapter mShopAdapter;
     private List<ShangPu_List.ContentBean> mShopList =new ArrayList<>();
+    private LinearLayout mLlEmpty;
 
 
     @Override
@@ -42,6 +44,7 @@ public class ShopActivity extends BackTitleActivity implements SwipeRefreshLayou
 
     @Override
     protected void initContentView() {
+        mLlEmpty = (LinearLayout) findViewById(R.id.ll_empty);
         mSrlTopContent = (SwipeRefreshLayout) findViewById(R.id.srl_top_content);
         mLvTopContent = (ListView) findViewById(R.id.lv_top_content);
 
@@ -73,6 +76,7 @@ public class ShopActivity extends BackTitleActivity implements SwipeRefreshLayou
                     public void onSuccess(ShangPu_List bean) {
                         mSrlTopContent.setRefreshing(false);
                         mShopList = bean.getContent();
+                        mLlEmpty.setVisibility(mShopList.size()>0?View.GONE:View.VISIBLE);
                         mShopAdapter.setData(mShopList);
                     }
 

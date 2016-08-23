@@ -49,6 +49,14 @@
                 android:layout_below="@id/tv_name"
                 android:layout_marginTop="8dp"
                 android:text="ddddddddddddd" />
+ <TextView
+                android:id="@+id/tv_code"
+                style="@style/font_9_15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_name"
+                android:layout_marginTop="8dp"
+                android:text="ddddddddddddd" />
 
 
         </LinearLayout>

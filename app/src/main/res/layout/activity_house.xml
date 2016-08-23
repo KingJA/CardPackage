@@ -48,6 +48,7 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/rl_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -102,13 +103,13 @@
             style="@style/font_3_15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="房屋撤布防" />
+            android:text="房间布防" />
 
 
         <CheckBox
             android:id="@+id/cb_house"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="24dp"
             android:layout_alignParentRight="true"
             android:background="@drawable/sel_cb_switch"
             android:button="@null" />
@@ -118,6 +119,7 @@
     <View style="@style/divider_nomal_horizontal" />
 
     <RelativeLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/bg_white"
@@ -140,7 +142,7 @@
 
     </RelativeLayout>
 
-    <View style="@style/divider_nomal_horizontal" />
+<!--    <View style="@style/divider_nomal_horizontal" />-->
 
     <RelativeLayout
         android:id="@+id/rl_info"
@@ -203,7 +205,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="8dp"
             android:layout_toRightOf="@id/iv_shuidian"
-            android:text="预警信息" />
+            android:text="水电煤气" />
 
 
         <ImageView

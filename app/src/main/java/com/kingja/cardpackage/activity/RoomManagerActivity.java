@@ -157,9 +157,9 @@ public class RoomManagerActivity extends BackTitleActivity implements BackTitleA
         tvHousePrice.setText(mPrice + TempConstants.UNIT_MOUTH);
         tvHousePersons.setText(mPersons + TempConstants.UNIT_PERSON);
         cbHouseAuto.setChecked(content.getISAUTOPUBLISH() == 1);
-        tvHouseConfig.setText("配置...");
+        tvHouseConfig.setText("");
         tvHouseTitle.setText(mTitle);
-        tvHousePs.setText("备注...");
+        tvHousePs.setText("");
     }
 
     @Override
@@ -314,6 +314,7 @@ public class RoomManagerActivity extends BackTitleActivity implements BackTitleA
                     @Override
                     public void onSuccess(ChuZuWu_ModifyRoom bean) {
                         setProgressDialog(false);
+                        RoomManagerActivity.this.finish();
                     }
                     @Override
                     public void onErrorResult(ErrorResult errorResult) {

@@ -10,8 +10,19 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.kingja.cardpackage.R;
+import com.kingja.cardpackage.entiy.ChuZuWu_DeviceLists;
 import com.kingja.cardpackage.entiy.ChuZuWu_ListByRenter;
+import com.kingja.cardpackage.entiy.ChuZuWu_SetDeployStatus;
+import com.kingja.cardpackage.entiy.ErrorResult;
+import com.kingja.cardpackage.net.ThreadPoolTask;
+import com.kingja.cardpackage.net.WebServiceCallBack;
+import com.kingja.cardpackage.util.Constants;
+import com.kingja.cardpackage.util.DataManager;
+import com.kingja.cardpackage.util.TempConstants;
 import com.kingja.cardpackage.util.ToastUtil;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Description：TODO
@@ -103,7 +114,7 @@ public class DetailHouseActivity extends BackTitleActivity implements View.OnCli
         switch (v.getId()) {
             //设备信息
             case R.id.rl_deviceInfo:
-                ToastUtil.showToast("设备信息");
+                HouseDeviceInfoActivity.goActivity(this,entiy.getRoomList().get(0).getROOMID());
                 break;
             //居家防盗
             case R.id.rl_fangdao:
@@ -135,7 +146,7 @@ public class DetailHouseActivity extends BackTitleActivity implements View.OnCli
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         switch (buttonView.getId()) {
             case R.id.cb_house:
-                ToastUtil.showToast(isChecked+"房屋撤布防");
+                deployStatus(isChecked?1:2);
                 break;
             case R.id.cb_warm_tip:
                 ToastUtil.showToast(isChecked+"预警信息提示");
@@ -144,5 +155,35 @@ public class DetailHouseActivity extends BackTitleActivity implements View.OnCli
                 break;
 
         }
+    }
+
+    /**
+     * 手动撤布防
+     * @param status 1布防    2撤防
+     */
+    protected void deployStatus(int status) {
+        setProgressDialog(true);
+        final String statusText=status==1?"手动布防":"自动布防";
+        Map<String, Object> param = new HashMap<>();
+        param.put(TempConstants.TaskID, "1");
+        param.put(TempConstants.HOUSEID, entiy.getHOUSEID());
+        param.put(TempConstants.ROOMID, entiy.getRoomList().get(0).getROOMID());
+        param.put("DEPLOYSTATUS",status);
+
+        new ThreadPoolTask.Builder()
+                .setGeneralParam(DataManager.getToken(), Constants.CARD_TYPE_HOUSE, Constants.ChuZuWu_SetDeployStatus, param)
+                .setBeanType(ChuZuWu_SetDeployStatus.class)
+                .setCallBack(new WebServiceCallBack<ChuZuWu_SetDeployStatus>() {
+                    @Override
+                    public void onSuccess(ChuZuWu_SetDeployStatus bean) {
+                        setProgressDialog(false);
+                        ToastUtil.showToast(statusText);
+                    }
+
+                    @Override
+                    public void onErrorResult(ErrorResult errorResult) {
+                        setProgressDialog(false);
+                    }
+                }).build().execute();
     }
 }

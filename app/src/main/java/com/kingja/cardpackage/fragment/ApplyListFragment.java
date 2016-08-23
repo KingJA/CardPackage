@@ -27,8 +27,10 @@ import com.kingja.cardpackage.util.AppUtil;
 import com.kingja.cardpackage.util.Constants;
 import com.kingja.cardpackage.util.DataManager;
 import com.kingja.cardpackage.util.TempConstants;
+import com.kingja.cardpackage.util.ToastUtil;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -46,7 +48,8 @@ public class ApplyListFragment extends BaseFragment implements OnOperItemClickL,
     private ChuZuWu_List.ContentBean entiy;
     private NormalListDialog mNormalListDialog;
     private PersonApplyRvAdapter mPersonApplyRvAdapter;
-
+    private LinearLayout mLlEmpty;
+    private List<ChuZuWu_List.ContentBean.RoomListBean> mRoomList;
 
     public static ApplyListFragment newInstance(ChuZuWu_List.ContentBean bean) {
         ApplyListFragment mApplyListFragment = new ApplyListFragment();
@@ -63,6 +66,7 @@ public class ApplyListFragment extends BaseFragment implements OnOperItemClickL,
 
     @Override
     public void initFragmentView(View view, Bundle savedInstanceState) {
+        mLlEmpty = (LinearLayout) view.findViewById(R.id.ll_empty);
         mLlSelectRoom = (LinearLayout) view.findViewById(R.id.ll_selectRoom);
         mTvApplyRoomNum = (TextView) view.findViewById(R.id.tv_apply_roomNum);
         mSrlApplyList = (SwipeRefreshLayout) view.findViewById(R.id.srl_apply_list);
@@ -75,6 +79,7 @@ public class ApplyListFragment extends BaseFragment implements OnOperItemClickL,
     @Override
     public void initFragmentVariables() {
         entiy = (ChuZuWu_List.ContentBean) getArguments().getSerializable("ENTIY");
+        mRoomList = entiy.getRoomList();
     }
 
     @Override
@@ -97,7 +102,9 @@ public class ApplyListFragment extends BaseFragment implements OnOperItemClickL,
                     @Override
                     public void onSuccess(ChuZuWu_LKSelfReportingList bean) {
                         mSrlApplyList.setRefreshing(false);
-                        mPersonApplyRvAdapter = new PersonApplyRvAdapter(getActivity(), bean.getContent().getPERSONNELINFOLIST());
+                        List<ChuZuWu_LKSelfReportingList.ContentBean.PERSONNELINFOLISTBean> mApplyList = bean.getContent().getPERSONNELINFOLIST();
+                        mLlEmpty.setVisibility(mApplyList.size()>0?View.GONE:View.VISIBLE);
+                        mPersonApplyRvAdapter = new PersonApplyRvAdapter(getActivity(), mApplyList);
                         mPersonApplyRvAdapter.setOnDeliteItemListener(ApplyListFragment.this);
                         mRvApplyList.setLayoutManager(new LinearLayoutManager(getActivity()));
                         mRvApplyList.addItemDecoration(new DividerItemDecoration(getActivity(),
@@ -118,8 +125,12 @@ public class ApplyListFragment extends BaseFragment implements OnOperItemClickL,
         mLlSelectRoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mNormalListDialog = DialogUtil.getListDialog(getActivity(), "房间号", new RoomListAdapter(getActivity(), entiy.getRoomList()));
-                mNormalListDialog.setOnOperItemClickL(ApplyListFragment.this);
+                if (mRoomList.size() > 0) {
+                    mNormalListDialog = DialogUtil.getListDialog(getActivity(), "房间号", new RoomListAdapter(getActivity(), mRoomList));
+                    mNormalListDialog.setOnOperItemClickL(ApplyListFragment.this);
+                }else{
+                    ToastUtil.showToast("该出租屋暂时没有房间");
+                }
             }
         });
         mSrlApplyList.setOnRefreshListener(ApplyListFragment.this);

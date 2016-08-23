@@ -6,9 +6,11 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.kingja.cardpackage.R;
+import com.kingja.cardpackage.adapter.DeviceInfoAdapter;
 import com.kingja.cardpackage.adapter.DeviceRoomAdapter;
 import com.kingja.cardpackage.entiy.ChuZuWu_DeviceLists;
 import com.kingja.cardpackage.entiy.ChuZuWu_List;
@@ -31,13 +33,14 @@ import java.util.Map;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class DeviceInfoActivity extends BackTitleActivity implements AdapterView.OnItemClickListener, DeviceRoomAdapter.OnExplandListener {
+public class RentDeviceInfoActivity extends BackTitleActivity implements AdapterView.OnItemClickListener, DeviceRoomAdapter.OnExplandListener ,SwipeRefreshLayout.OnRefreshListener{
     private ChuZuWu_List.ContentBean entiy;
     private SwipeRefreshLayout mSrlTopContent;
     private ListView mLvTopContent;
     private List<ChuZuWu_List.ContentBean.RoomListBean> roomList = new ArrayList<>();
     private DeviceRoomAdapter mDeviceRoomAdapter;
     private List<ChuZuWu_DeviceLists.ContentBean> mDeviceList;
+
 
 
     @Override
@@ -72,6 +75,7 @@ public class DeviceInfoActivity extends BackTitleActivity implements AdapterView
     protected void initData() {
         mLvTopContent.setOnItemClickListener(this);
         mDeviceRoomAdapter.setOnExplandListener(this);
+        mSrlTopContent.setOnRefreshListener(this);
     }
 
     @Override
@@ -82,7 +86,7 @@ public class DeviceInfoActivity extends BackTitleActivity implements AdapterView
 
 
     public static void goActivity(Context context, ChuZuWu_List.ContentBean entiy) {
-        Intent intent = new Intent(context, DeviceInfoActivity.class);
+        Intent intent = new Intent(context, RentDeviceInfoActivity.class);
         intent.putExtra("ENTIY", entiy);
         context.startActivity(intent);
     }
@@ -101,7 +105,7 @@ public class DeviceInfoActivity extends BackTitleActivity implements AdapterView
         param.put("PageIndex", 0);
 
         new ThreadPoolTask.Builder()
-                .setGeneralParam(DataManager.getToken(), Constants.CARD_TYPE_HOUSE, Constants.ChuZuWu_DeviceLists, param)
+                .setGeneralParam(DataManager.getToken(), Constants.CARD_TYPE_RENT, Constants.ChuZuWu_DeviceLists, param)
                 .setBeanType(ChuZuWu_DeviceLists.class)
                 .setCallBack(new WebServiceCallBack<ChuZuWu_DeviceLists>() {
                     @Override
@@ -114,7 +118,7 @@ public class DeviceInfoActivity extends BackTitleActivity implements AdapterView
                         }
 //                        deviceListAdapter = new DeviceListAdapter(position, roomid, roomno, DeviceManagerActivity.this, DeviceManagerActivity.this, deviceList);
 //                        deviceListAdapter.setOnDeviceChangeListener(DeviceManagerActivity.this);
-                        DeviceInfoAdapter mDeviceInfoAdapter = new DeviceInfoAdapter(DeviceInfoActivity.this, mDeviceList);
+                        DeviceInfoAdapter mDeviceInfoAdapter = new DeviceInfoAdapter(RentDeviceInfoActivity.this, mDeviceList);
                         mDeviceRoomAdapter.saveAdapter(position, mDeviceInfoAdapter);
                         lv.setAdapter(mDeviceInfoAdapter);
                         mDeviceRoomAdapter.setVisibility(!expland, position);
@@ -125,5 +129,10 @@ public class DeviceInfoActivity extends BackTitleActivity implements AdapterView
                         setProgressDialog(false);
                     }
                 }).build().execute();
+    }
+
+    @Override
+    public void onRefresh() {
+        mSrlTopContent.setRefreshing(false);
     }
 }

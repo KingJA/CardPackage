@@ -41,6 +41,7 @@ import com.yunmai.android.engine.OcrEngine;
 import com.yunmai.android.vo.IDCard;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import lib.kingja.ocr.ACamera;
@@ -67,7 +68,7 @@ public class ApplyFragment extends BaseFragment implements View.OnClickListener,
     private String name;
     private String cardId;
     private String phone;
-
+    private List<ChuZuWu_List.ContentBean.RoomListBean> mRoomList;
 
     public static ApplyFragment newInstance(ChuZuWu_List.ContentBean bean) {
         ApplyFragment mApplyFragment = new ApplyFragment();
@@ -97,6 +98,7 @@ public class ApplyFragment extends BaseFragment implements View.OnClickListener,
     @Override
     public void initFragmentVariables() {
         entiy = (ChuZuWu_List.ContentBean) getArguments().getSerializable("ENTIY");
+        mRoomList = entiy.getRoomList();
     }
 
     @Override
@@ -120,9 +122,12 @@ public class ApplyFragment extends BaseFragment implements View.OnClickListener,
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ll_selectRoom:
-                ToastUtil.showToast("选择房间");
-                mNormalListDialog = DialogUtil.getListDialog(getActivity(), "房间号", new RoomListAdapter(getActivity(), entiy.getRoomList()));
-                mNormalListDialog.setOnOperItemClickL(this);
+                if (mRoomList.size() > 0) {
+                    mNormalListDialog = DialogUtil.getListDialog(getActivity(), "房间号", new RoomListAdapter(getActivity(), mRoomList));
+                    mNormalListDialog.setOnOperItemClickL(ApplyFragment.this);
+                }else{
+                    ToastUtil.showToast("该出租屋暂时没有房间");
+                }
                 break;
             case R.id.iv_apply_camera:
                 ActivityUtil.goActivityForResult(getActivity(), ACamera.class, REQ_OCR);
@@ -175,10 +180,11 @@ public class ApplyFragment extends BaseFragment implements View.OnClickListener,
                     @Override
                     public void onSuccess(ChuZuWu_LKSelfReportingIn bean) {
                         mProgressDialog.dismiss();
-                        NormalDialog doubleDialog = DialogUtil.getDoubleDialog(getActivity(), "是否要继续进行人员申报", "离开", "继续");
+                        final NormalDialog doubleDialog = DialogUtil.getDoubleDialog(getActivity(), "是否要继续进行人员申报", "离开", "继续");
                         doubleDialog.setOnBtnClickL(new OnBtnClickL() {
                             @Override
                             public void onBtnClick() {
+                                doubleDialog.dismiss();
                                 mPersonApplyActivity.finish();
                             }
                         }, new OnBtnClickL() {
@@ -187,6 +193,7 @@ public class ApplyFragment extends BaseFragment implements View.OnClickListener,
                                 mTvApplyName.setText("");
                                 mTvApplyCardId.setText("");
                                 mEtApplyPhone.setText("");
+                                doubleDialog.dismiss();
 
                             }
                         });

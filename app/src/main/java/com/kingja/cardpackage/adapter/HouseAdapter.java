@@ -1,6 +1,7 @@
 package com.kingja.cardpackage.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -36,7 +37,7 @@ public class HouseAdapter  extends BaseLvAdapter<ChuZuWu_ListByRenter.ContentBea
         viewHolder.ivicon.setBackgroundResource(R.drawable.bg_house);
         viewHolder.tvhouseName.setText(list.get(position).getHOUSENAME());
         viewHolder.ivhouseAddress.setText(list.get(position).getADDRESS());
-
+        viewHolder.ivhouseNum.setText(list.get(position).getRoomList().get(0).getROOMNO()+"号");
         return convertView;
     }
 
@@ -45,12 +46,14 @@ public class HouseAdapter  extends BaseLvAdapter<ChuZuWu_ListByRenter.ContentBea
         public final ImageView ivicon;
         public final TextView tvhouseName;
         public final TextView ivhouseAddress;
+        public final TextView ivhouseNum;
         public final View root;
 
         public ViewHolder(View root) {
             ivicon = (ImageView) root.findViewById(R.id.iv_icon);
             tvhouseName = (TextView) root.findViewById(R.id.tv_houseName);
             ivhouseAddress = (TextView) root.findViewById(R.id.iv_houseAddress);
+            ivhouseNum = (TextView) root.findViewById(R.id.iv_houseNum);
             this.root = root;
         }
     }

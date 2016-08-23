@@ -114,11 +114,12 @@ public class ThreadPoolTask implements Runnable {
 /*
     1001 我的住房#
     1002 我家出租房#
-    1003 我的车
     1004 我的店#
+    1007 出租房代管#
+    1003 我的车
     1005 亲情关爱
     1006 服务商城
-    1007 出租房代管#*/
+    */
 
     public Map<String, Object> getGeneralParam(String token, String cardType, String dataTypeCode, Object privateParam) {
         Gson gson = new Gson();

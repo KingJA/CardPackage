@@ -46,7 +46,26 @@
 
 
     </LinearLayout>
+    <LinearLayout
+        android:background="@color/bg_white"
+        android:visibility="gone"
+        android:id="@+id/ll_empty"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:background="@drawable/bg_empty"
+            android:layout_width="115dp"
+            android:layout_height="115dp" />
 
+        <TextView
+            android:layout_marginTop="16dp"
+            android:text="暂时没有数据"
+            style="@style/font_9_15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/srl_apply_list"
         android:layout_width="match_parent"

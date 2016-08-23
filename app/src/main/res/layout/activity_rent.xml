@@ -51,6 +51,7 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/rl_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -106,6 +107,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/bg_white"
@@ -142,6 +144,7 @@
         <View style="@style/divider_nomal_horizontal" />
 
         <RelativeLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/bg_white"
@@ -330,7 +333,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="8dp"
                 android:layout_toRightOf="@id/iv_shuidian"
-                android:text="预警信息" />
+                android:text="水电煤气" />
 
 
             <ImageView

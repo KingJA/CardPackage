@@ -22,7 +22,12 @@ public class MainActivity extends AppCompatActivity {
     public void rentHouse(View view) {
         ActivityUtil.goActivity(this,RentActivity.class);
     }
+
     public void myShop(View view) {
         ActivityUtil.goActivity(this,ShopActivity.class);
+    }
+
+    public void agent(View view) {
+        ActivityUtil.goActivity(this,AgentActivity.class);
     }
 }

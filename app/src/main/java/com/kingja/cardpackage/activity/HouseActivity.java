@@ -3,6 +3,7 @@ package com.kingja.cardpackage.activity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.kingja.cardpackage.R;
@@ -31,6 +32,7 @@ public class HouseActivity extends BackTitleActivity implements SwipeRefreshLayo
     private ListView mLvTopContent;
     private List<ChuZuWu_ListByRenter.ContentBean> mHouseList=new ArrayList<>();
     private HouseAdapter mHouseAdapter;
+    private LinearLayout mLlEmpty;
 
 
     @Override
@@ -40,6 +42,7 @@ public class HouseActivity extends BackTitleActivity implements SwipeRefreshLayo
 
     @Override
     protected void initContentView() {
+        mLlEmpty = (LinearLayout) findViewById(R.id.ll_empty);
         mSrlTopContent = (SwipeRefreshLayout) findViewById(R.id.srl_top_content);
         mLvTopContent = (ListView) findViewById(R.id.lv_top_content);
 
@@ -70,6 +73,7 @@ public class HouseActivity extends BackTitleActivity implements SwipeRefreshLayo
                     public void onSuccess(ChuZuWu_ListByRenter bean) {
                         mSrlTopContent.setRefreshing(false);
                         mHouseList = bean.getContent();
+                        mLlEmpty.setVisibility(mHouseList.size()>0?View.GONE:View.VISIBLE);
                         mHouseAdapter.setData(mHouseList);
                     }
 

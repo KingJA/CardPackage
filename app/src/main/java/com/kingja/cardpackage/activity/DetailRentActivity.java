@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.kingja.cardpackage.R;
 import com.kingja.cardpackage.entiy.ChuZuWu_List;
-import com.kingja.cardpackage.util.ActivityUtil;
 import com.kingja.cardpackage.util.ToastUtil;
 
 /**
@@ -112,7 +111,7 @@ public class DetailRentActivity extends BackTitleActivity implements View.OnClic
         switch (v.getId()) {
             //设备信息
             case R.id.rl_deviceInfo:
-                DeviceInfoActivity.goActivity(this,entiy);
+                RentDeviceInfoActivity.goActivity(this,entiy);
                 break;
             //居家防盗
             case R.id.rl_fangdao:

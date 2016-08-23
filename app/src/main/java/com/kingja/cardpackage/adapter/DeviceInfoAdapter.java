@@ -1,4 +1,4 @@
-package com.kingja.cardpackage.activity;
+package com.kingja.cardpackage.adapter;
 
 import android.content.Context;
 import android.view.View;
@@ -24,7 +24,6 @@ import java.util.Map;
  * Email:kingjavip@gmail.com
  */
 public class DeviceInfoAdapter extends BaseLvAdapter<ChuZuWu_DeviceLists.ContentBean> {
-    private OnDeviceChangeListener onDeviceChangeListener;
     private Map<String, String> typeMap = new HashMap<>();
     private List<Basic_Dictionary_Kj> typeList;
     public DeviceInfoAdapter(Context context, List<ChuZuWu_DeviceLists.ContentBean> list) {
@@ -54,13 +53,6 @@ public class DeviceInfoAdapter extends BaseLvAdapter<ChuZuWu_DeviceLists.Content
         return convertView;
     }
 
-    public interface OnDeviceChangeListener {
-        void onChange(ChuZuWu_DeviceLists.ContentBean bean, String roomId, String roomNo, int position, int outPosition);
-    }
-
-    public void setOnDeviceChangeListener(OnDeviceChangeListener onDeviceChangeListener) {
-        this.onDeviceChangeListener = onDeviceChangeListener;
-    }
 
     public class ViewHolder {
         public final ImageView ivstatus;

@@ -3,6 +3,8 @@ package com.kingja.cardpackage.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.kingja.cardpackage.R;
@@ -36,7 +38,7 @@ public class PersonManagerActivity extends BackTitleActivity {
     private ListView mLvTopContent;
     private List<ChuZuWu_MenPaiAuthorizationList.ContentBean.PERSONNELINFOLISTBean> personList = new ArrayList<>();
     private PersonManagerLvAdapter mPersonManagerAdapter;
-
+    private LinearLayout mLlEmpty;
 
     @Override
     protected void initVariables() {
@@ -47,6 +49,7 @@ public class PersonManagerActivity extends BackTitleActivity {
 
     @Override
     protected void initContentView() {
+        mLlEmpty = (LinearLayout) findViewById(R.id.ll_empty);
         mSrlTopContent = (SwipeRefreshLayout) findViewById(R.id.srl_top_content);
         mLvTopContent = (ListView) findViewById(R.id.lv_top_content);
 
@@ -79,6 +82,7 @@ public class PersonManagerActivity extends BackTitleActivity {
                     public void onSuccess(ChuZuWu_MenPaiAuthorizationList bean) {
                         mSrlTopContent.setRefreshing(false);
                         personList = bean.getContent().getPERSONNELINFOLIST();
+                        mLlEmpty.setVisibility(personList.size()>0? View.GONE:View.VISIBLE);
                         mPersonManagerAdapter.setData(personList);
                     }
 

@@ -9,7 +9,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.kingja.cardpackage.R;
-import com.kingja.cardpackage.activity.DeviceInfoAdapter;
 import com.kingja.cardpackage.entiy.ChuZuWu_List;
 import com.kingja.cardpackage.ui.FixedListView;
 

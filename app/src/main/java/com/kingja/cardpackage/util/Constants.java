@@ -24,7 +24,7 @@ public class Constants {
     /*我的店*/
     public static final String CARD_TYPE_SHOP = "1004";
     /*出租房代管*/
-    public static final String CARD_TYPE_ADMIN = "1007";
+    public static final String CARD_TYPE_AGENT = "1007";
 
     /*  ============================================  接口方法  ============================================*/
 
@@ -32,6 +32,8 @@ public class Constants {
     public static final String ChuZuWu_List = "ChuZuWu_List";
     /*我的店列表*/
     public static final String ShangPu_List = "ShangPu_List";
+    /*出租房代管列表*/
+    public static final String ChuZuWu_ListByManager = "ChuZuWu_ListByManager";
     /*我的住房列表*/
     public static final String ChuZuWu_ListByRenter = "ChuZuWu_ListByRenter";
     /*人员管理列表*/
@@ -48,5 +50,7 @@ public class Constants {
     public static final String ChuZuWu_LKSelfReportingOut = "ChuZuWu_LKSelfReportingOut";
     /*自主申报*/
     public static final String ChuZuWu_LKSelfReportingIn = "ChuZuWu_LKSelfReportingIn";
+    /*手动撤布防*/
+    public static final String ChuZuWu_SetDeployStatus = "ChuZuWu_SetDeployStatus";
 
 }

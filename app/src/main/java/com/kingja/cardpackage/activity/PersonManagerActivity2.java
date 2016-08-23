@@ -6,6 +6,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.kingja.cardpackage.R;
 import com.kingja.cardpackage.adapter.DividerItemDecoration;
@@ -17,6 +19,7 @@ import com.kingja.cardpackage.net.WebServiceCallBack;
 import com.kingja.cardpackage.util.AppUtil;
 import com.kingja.cardpackage.util.Constants;
 import com.kingja.cardpackage.util.DataManager;
+import com.kingja.cardpackage.util.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,22 +32,19 @@ import java.util.Map;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class PersonManagerActivity2 extends BackTitleActivity implements SwipeRefreshLayout.OnRefreshListener{
+public class PersonManagerActivity2 extends BackTitleActivity implements SwipeRefreshLayout.OnRefreshListener,PersonManagerRvAdapter.OnDeliteItemListener{
     public static String HOUSE_ID="HOUSEID";
     public static String ROOM_ID="ROOMID";
     public static String ROOM_NUM="ROOMNUM";
     private String mHouseId;
     private String mRoomId;
     private String mRoomNum;
+    private LinearLayout mLlEmpty;
 
     private List<ChuZuWu_MenPaiAuthorizationList.ContentBean.PERSONNELINFOLISTBean> personList=new ArrayList<>();
     private PersonManagerRvAdapter mPersonManagerAdapter;
     private SwipeRefreshLayout mSrl;
     private RecyclerView mRv;
-
-    private void assignViews() {
-
-    }
 
 
     @Override
@@ -56,6 +56,7 @@ public class PersonManagerActivity2 extends BackTitleActivity implements SwipeRe
 
     @Override
     protected void initContentView() {
+        mLlEmpty = (LinearLayout) findViewById(R.id.ll_empty);
         mSrl = (SwipeRefreshLayout) findViewById(R.id.srl);
         mRv = (RecyclerView) findViewById(R.id.rv);
         mPersonManagerAdapter = new PersonManagerRvAdapter(this, personList);
@@ -84,13 +85,14 @@ public class PersonManagerActivity2 extends BackTitleActivity implements SwipeRe
         param.put("PageSize", "100");
         param.put("PageIndex", "0");
         new ThreadPoolTask.Builder()
-                .setGeneralParam(DataManager.getToken(), Constants.CARD_TYPE_HOUSE,Constants.ChuZuWu_MenPaiAuthorizationList, param)
+                .setGeneralParam(DataManager.getToken(), Constants.CARD_TYPE_RENT,Constants.ChuZuWu_MenPaiAuthorizationList, param)
                 .setBeanType(ChuZuWu_MenPaiAuthorizationList.class)
                 .setCallBack(new WebServiceCallBack<ChuZuWu_MenPaiAuthorizationList>() {
                     @Override
                     public void onSuccess(ChuZuWu_MenPaiAuthorizationList bean) {
                         mSrl.setRefreshing(false);
                         personList = bean.getContent().getPERSONNELINFOLIST();
+                        mLlEmpty.setVisibility(personList.size()>0? View.GONE:View.VISIBLE);
                         mPersonManagerAdapter.setData(personList);
                     }
 
@@ -103,7 +105,7 @@ public class PersonManagerActivity2 extends BackTitleActivity implements SwipeRe
 
     @Override
     protected void initData() {
-        mSrl.setOnRefreshListener(this);
+        mPersonManagerAdapter.setOnDeliteItemListener(this);
     }
 
     @Override
@@ -123,5 +125,10 @@ public class PersonManagerActivity2 extends BackTitleActivity implements SwipeRe
     @Override
     public void onRefresh() {
         mSrl.setRefreshing(false);
+    }
+
+    @Override
+    public void onDeliteItem(String listId, int position) {
+        ToastUtil.showToast("您好，该功能暂未开放");
     }
 }

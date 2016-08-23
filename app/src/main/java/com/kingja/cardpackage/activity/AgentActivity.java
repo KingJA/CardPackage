@@ -6,13 +6,13 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.kingja.cardpackage.R;
 import com.kingja.cardpackage.adapter.RentAdapter;
 import com.kingja.cardpackage.entiy.ChuZuWu_List;
 import com.kingja.cardpackage.entiy.ErrorResult;
 import com.kingja.cardpackage.net.ThreadPoolTask;
 import com.kingja.cardpackage.net.WebServiceCallBack;
 import com.kingja.cardpackage.util.AppUtil;
-import com.kingja.cardpackage.R;
 import com.kingja.cardpackage.util.Constants;
 import com.kingja.cardpackage.util.DataManager;
 
@@ -27,13 +27,12 @@ import java.util.Map;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class RentActivity extends BackTitleActivity implements SwipeRefreshLayout.OnRefreshListener,AdapterView.OnItemClickListener{
+public class AgentActivity extends BackTitleActivity implements SwipeRefreshLayout.OnRefreshListener,AdapterView.OnItemClickListener{
     private SwipeRefreshLayout mSrlTopContent;
     private ListView mLvTopContent;
     private List<ChuZuWu_List.ContentBean> mChuZuWuList=new ArrayList<>();
     private RentAdapter mRentAdapter;
     private LinearLayout mLlEmpty;
-
 
     @Override
     protected void initVariables() {
@@ -68,7 +67,7 @@ public class RentActivity extends BackTitleActivity implements SwipeRefreshLayou
         param.put("PageSize", "100");
         param.put("PageIndex", "0");
         new ThreadPoolTask.Builder()
-                .setGeneralParam(DataManager.getToken(), Constants.CARD_TYPE_RENT,Constants.ChuZuWu_List, param)
+                .setGeneralParam(DataManager.getToken(), Constants.CARD_TYPE_AGENT,Constants.ChuZuWu_ListByManager, param)
                 .setBeanType(ChuZuWu_List.class)
                 .setCallBack(new WebServiceCallBack<ChuZuWu_List>() {
                     @Override
@@ -77,6 +76,7 @@ public class RentActivity extends BackTitleActivity implements SwipeRefreshLayou
                         mChuZuWuList = bean.getContent();
                         mLlEmpty.setVisibility(mChuZuWuList.size()>0?View.GONE:View.VISIBLE);
                         mRentAdapter.setData(mChuZuWuList);
+
                     }
 
                     @Override

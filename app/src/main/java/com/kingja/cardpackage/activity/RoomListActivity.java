@@ -5,13 +5,13 @@ import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.kingja.cardpackage.R;
 import com.kingja.cardpackage.adapter.RoomListAdapter;
 import com.kingja.cardpackage.entiy.ChuZuWu_List;
 import com.kingja.cardpackage.util.AppUtil;
-import com.kingja.cardpackage.util.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +29,7 @@ public class RoomListActivity extends BackTitleActivity implements AdapterView.O
     private List<ChuZuWu_List.ContentBean.RoomListBean> roomList = new ArrayList<>();
     private RoomListAdapter mRoomListAdapter;
     private int mRequestCode;
+    private LinearLayout mLlEmpty;
 
 
     @Override
@@ -36,13 +37,15 @@ public class RoomListActivity extends BackTitleActivity implements AdapterView.O
         entiy = (ChuZuWu_List.ContentBean) getIntent().getSerializableExtra("ENTIY");
         mRequestCode = getIntent().getIntExtra("REQUEST_CODE", 0);
         roomList = entiy.getRoomList();
+
     }
 
     @Override
     protected void initContentView() {
+        mLlEmpty = (LinearLayout) findViewById(R.id.ll_empty);
         mSrlTopContent = (SwipeRefreshLayout) findViewById(R.id.srl_top_content);
         mLvTopContent = (ListView) findViewById(R.id.lv_top_content);
-
+        mLlEmpty.setVisibility(roomList.size()>0?View.GONE:View.VISIBLE);
         mRoomListAdapter = new RoomListAdapter(this, roomList);
         mLvTopContent.setAdapter(mRoomListAdapter);
 

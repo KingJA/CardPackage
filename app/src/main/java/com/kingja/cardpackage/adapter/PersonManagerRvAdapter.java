@@ -37,13 +37,14 @@ public class PersonManagerRvAdapter extends BaseRvAdaper<ChuZuWu_MenPaiAuthoriza
     protected void bindHolder(ViewHolder baseHolder, ChuZuWu_MenPaiAuthorizationList.ContentBean.PERSONNELINFOLISTBean bean, final int position) {
         PersonManagerViewHolder holder = (PersonManagerViewHolder) baseHolder;
         holder.tv_name.setText(bean.getNAME());
-        holder.tv_cardId.setText("身份证号: " + bean.getCARDID());
+        holder.tv_cardId.setText("身份证号: " + bean.getIDENTITYCARD());
+        holder.tv_code.setText("识别码: " + bean.getCARDID());
         holder.tv_phone.setText(bean.getPHONENUM());
         holder.tv_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onDeliteItemListener != null) {
-                    onDeliteItemListener.onDeliteItem(position);
+                    onDeliteItemListener.onDeliteItem(list.get(position).getLISTID(),position);
                 }
             }
         });
@@ -54,7 +55,7 @@ public class PersonManagerRvAdapter extends BaseRvAdaper<ChuZuWu_MenPaiAuthoriza
     }
 
     public interface OnDeliteItemListener {
-        void onDeliteItem(int position);
+        void onDeliteItem(String listId,int position);
     }
 
     public void deleteItem(int position) {
@@ -68,9 +69,11 @@ public class PersonManagerRvAdapter extends BaseRvAdaper<ChuZuWu_MenPaiAuthoriza
         public TextView tv_phone;
         public TextView tv_name;
         public TextView tv_delete;
+        public TextView tv_code;
 
         public PersonManagerViewHolder(View itemView) {
             super(itemView);
+            tv_code = (TextView) itemView.findViewById(R.id.tv_code);
             tv_cardId = (TextView) itemView.findViewById(R.id.tv_cardId);
             tv_phone = (TextView) itemView.findViewById(R.id.tv_phone);
             tv_name = (TextView) itemView.findViewById(R.id.tv_name);
